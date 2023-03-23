@@ -16,4 +16,23 @@ const deleteSubscription = async (id) => {
     await Subscription.findByIdAndRemove(id);
 }
 
-module.exports = { getSubscriptions, getSubscription, updateSubscription, deleteSubscription };
+const subsDetails = async () => {
+   return Subscription.aggregate([ { 
+        "$lookup" :
+        {
+            "from" : "movies",
+            "localField" : "movieID",
+            "foreignField" : "_id",
+            "as" : "MovieDetails"
+        },
+        "$lookup" :
+        {
+            "from" : "members",
+            "localField" : "memberID",
+            "foreignField" : "_id",
+            "as" : "MemberDetails"
+        }
+    }]);
+}
+
+module.exports = { getSubscriptions, getSubscription, updateSubscription, deleteSubscription, subsDetails };

@@ -1,11 +1,17 @@
 const express = require('express');
 const movieBL = require('../models/moviesBL');
+const subBL = require('../models/subscriptionsBL');
 
 const router = express.Router();
 
 router.get('/', async function (req, resp) {
     let movies = await movieBL.getMovies();
     return resp.json(movies);
+});
+
+router.get('/subbed', async function (req, resp) {
+    let Subbedmovies = await subBL.subsDetails();
+    return resp.json(Subbedmovies);
 });
 
 router.get('/:id', async function (req, resp) {
@@ -36,5 +42,7 @@ router.delete('/:id', async function(req, resp) {
         return error;
     }
 });
+
+
 
 module.exports = router;

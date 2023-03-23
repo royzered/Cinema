@@ -11,13 +11,15 @@ const movieRouter = require('./routers/movieRouter');
 
 app.use(express.json());
 app.use(cors());
+
+
 app.use("/api/movies", movieRouter);
 
 app.listen(port, () => {
     console.info(`
-    Server is UP @ http://127.0.0.1:8000
+    Server is UP @ http://127.0.0.1:${port}
     ------------------------------------
     API 
-    movies = http://127.0.0.1:8000/api/movies
+    movies = http://127.0.0.1:${port}/api/movies
     `)
 });
