@@ -1,0 +1,37 @@
+const express = require('express');
+const subsBL = require('../models/subscriptionsBL');
+
+const router = express.Router();
+
+router.get('/', async function (req, resp) {
+    let subscriptions = await subsBL.getDetailedSubs();
+    return resp.json(subscriptions);
+});
+
+router.get('/:id', async function (req, resp) {
+    const id = req.params.id;
+    let subscription = await subsBL.getSubdetails(id);
+    return resp.json(subscription);
+});
+
+router.post('/', async function (req, resp) {
+    const newSub = req.params.body;
+    let addSub = await subsBL.addSubscription(newSub);
+    return resp.json(addSub);
+});
+
+router.put('/:id', async function (req, resp) {
+    const id = req.params.id;
+    const updateSub = req.params.body;
+    let updatedSub = await subsBL.updateSubscription(id, updateSub);
+    return resp.json(updatedSub);
+});
+
+router.delete('/:id', async function (req, resp) {
+    const id = req.params.id;
+    let deleteSub = await subsBL.deleteSubscription(id);
+    return resp.json(deleteSub);
+});
+
+
+module.exports = router;
