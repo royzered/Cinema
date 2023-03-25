@@ -1,0 +1,12 @@
+const express = require('express');
+const usersBL = require('../models/usersBL');
+
+router = express.Router();
+
+router.post('/', async function(req, resp) {
+    let logUser = req.body;
+    let loginFunc = await usersBL.login(logUser);
+    return resp.json(loginFunc);
+});
+
+module.exports = router;

@@ -10,6 +10,7 @@ dbContext;
 const movieRouter = require('./routers/movieRouter');
 const subsRouter = require('./routers/subsRouter');
 const membersRouter = require('./routers/membersRouter');
+const usersRouter = require('./routers/usersRouter');
 
 
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use(cors());
 app.use("/api/movies", movieRouter);
 app.use("/api/subs", subsRouter);
 app.use("/api/members", membersRouter);
+app.use("/login", usersRouter);
 
 app.listen(port, () => {
     console.info(`
@@ -28,5 +30,6 @@ app.listen(port, () => {
     movies = http://127.0.0.1:${port}/api/movies
     subscriptions = http://127.0.0.1:${port}/api/subs
     members = http://127.0.0.1:${port}/api/members
+    users = http://127.0.0.1:${port}/login
     `)
 });
