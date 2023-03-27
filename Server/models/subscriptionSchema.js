@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const subscriptionSchema = new mongoose.Schema({
-    movieID : String, 
-    memberID : String,
+    movieID : mongoose.Types.ObjectId, 
+    memberID : mongoose.Types.ObjectId,
+    date : String
 });
 
 module.exports = mongoose.model("subscriptions", subscriptionSchema);

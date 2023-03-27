@@ -23,10 +23,10 @@ const login = async (user) => {
     let checkUsername = await User.findOne({ "username" : user.username });
     if(checkUsername) 
     {
-        return "Incorrect Password."
+        return "Incorrect Password"
     }
     else {
-        return "YARE YARE DAZE, Incorrect username / password.";
+        return "Incorrect Username / Password";
     }
 
 };

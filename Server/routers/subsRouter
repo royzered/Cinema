@@ -15,7 +15,7 @@ router.get('/:id', async function (req, resp) {
 });
 
 router.post('/', async function (req, resp) {
-    const newSub = req.params.body;
+    const newSub = req.body;
     let addSub = await subsBL.addSubscription(newSub);
     return resp.json(addSub);
 });

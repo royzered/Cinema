@@ -1,3 +1,4 @@
+const e = require('express');
 const Subscription = require('./subscriptionSchema');
 const mongoose = require('mongoose');
 
@@ -50,6 +51,7 @@ const getSubdetails = (id) => {
     ]);
     return sub;
 };
+
 const addSubscription = async (newSubscription) => {
    let newSub = new Subscription(newSubscription);
     let newSubCreate = await newSub.save();
