@@ -53,9 +53,20 @@ const getSubdetails = (id) => {
 };
 
 const addSubscription = async (newSubscription) => {
-   let newSub = new Subscription(newSubscription);
-    let newSubCreate = await newSub.save();
-    return newSubCreate._id;
+    console.log(newSubscription);
+    let exist = Subscription.find({ memberID : newSubscription.memberID, movieID : newSubscription.movieID });
+    if((await exist).length == 0) {
+        try {
+            let newSub = new Subscription(newSubscription);
+        let newSubCreate = await newSub.save();
+        return newSubCreate._id;
+        } catch (error) {
+            return "Already Subscribed."
+        }
+    }
+    else  {
+        return "Try Again.";
+    }
 };
 
 const updateSubscription = async (id, subscriptionUpdate) => {
