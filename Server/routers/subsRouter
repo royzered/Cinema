@@ -1,9 +1,9 @@
 const express = require('express');
 const subsBL = require('../models/subscriptionsBL');
-
+const authToken = require('../middlewares/auth');
 const router = express.Router();
 
-router.get('/', async function (req, resp) {
+router.get('/', authToken, async function (req, resp) {
     let subscriptions = await subsBL.getDetailedSubs();
     return resp.json(subscriptions);
 });

@@ -55,7 +55,7 @@ const getSubdetails = (id) => {
 const addSubscription = async (newSubscription) => {
     console.log(newSubscription);
     let exist = Subscription.find({ memberID : newSubscription.memberID, movieID : newSubscription.movieID });
-    if((await exist).length == 0) {
+    if(!(await exist).length) {
         try {
             let newSub = new Subscription(newSubscription);
         let newSubCreate = await newSub.save();

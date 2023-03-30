@@ -16,7 +16,6 @@ const usersRouter = require('./routers/usersRouter');
 app.use(express.json());
 app.use(cors());
 
-
 app.use("/api/movies", movieRouter);
 app.use("/api/subs", subsRouter);
 app.use("/api/members", membersRouter);
