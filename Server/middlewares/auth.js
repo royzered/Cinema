@@ -11,7 +11,7 @@ function authToken(req, resp, next) {
     }
 
     else {
-        jwt.verify(token, process.env.HEATSAUCE, (err) => {
+        jwt.verify(token, process.env.A_SECRET, (err) => {
             if(err) {
                 return resp.sendStatus(403);
             }
@@ -19,5 +19,6 @@ next();
         });
     }
 };
+
 
 module.exports = authToken;
