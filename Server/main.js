@@ -12,17 +12,18 @@ const movieRouter = require('./routers/movieRouter');
 const subsRouter = require('./routers/subsRouter');
 const membersRouter = require('./routers/membersRouter');
 const usersRouter = require('./routers/usersRouter');
-const tokenRouter = require('./routers/tokenRouter')
+const tokenRouter = require('./routers/tokenRouter');
+const authToken = require('./middlewares/auth');
 
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
-app.use("/api/movies", movieRouter);
-app.use("/api/subs", subsRouter);
-app.use("/api/members", membersRouter);
+app.use("/api/movies", authToken, movieRouter);
+app.use("/api/subs", authToken, subsRouter);
+app.use("/api/members", authToken, membersRouter);
 app.use("/login", usersRouter);
-app.use("/refresh", tokenRouter);
+app.use("/refresh", authToken, tokenRouter);
 
 app.listen(port, () => {
     console.info(`

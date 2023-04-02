@@ -31,4 +31,12 @@ const refreshToken = (req, res) => {
      };
     };
 
-module.exports = { refreshToken };
+    const refreshBeforeExepration = (token) => {
+        jwt.verify(token, tokenSecret, (err, decode) => {
+            if(err) {
+                refreshToken();
+            }
+        })
+    }
+
+module.exports = { refreshToken, refreshBeforeExepration };

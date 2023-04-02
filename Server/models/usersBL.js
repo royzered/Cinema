@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./usersSchema');
 const hash = require('hash.js');
 const dotenv = require ('dotenv'); 
+const tokenBL = require('./tokenBL');
 
 dotenv.config();
 
@@ -10,14 +11,16 @@ const refreshKey = process.env.R_SECRET;
 const properSalt = process.env.PROPER_SALT;
 
 const login = async (user) => {
+
     let userPasswordHash = hash.sha256().update(user.password + properSalt).digest('hex');
     let userExists = await User.findOne({ "username" : user.username, "password" : userPasswordHash });
+
     if(userExists) {
         let accessToken = jwt.sign(
             { id : userExists.id },
             key, 
             {
-                expiresIn : 720
+                expiresIn : 60 * 24 * 1000
             }
         ); 
         let refreshToken = jwt.sign(
