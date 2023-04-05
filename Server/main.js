@@ -12,7 +12,6 @@ const movieRouter = require('./routers/movieRouter');
 const subsRouter = require('./routers/subsRouter');
 const membersRouter = require('./routers/membersRouter');
 const usersRouter = require('./routers/usersRouter');
-const tokenRouter = require('./routers/tokenRouter');
 const authToken = require('./middlewares/auth');
 
 app.use(express.json());
@@ -23,7 +22,6 @@ app.use("/api/movies", authToken, movieRouter);
 app.use("/api/subs", authToken, subsRouter);
 app.use("/api/members", authToken, membersRouter);
 app.use("/login", usersRouter);
-app.use("/refresh", authToken, tokenRouter);
 
 app.listen(port, () => {
     console.info(`

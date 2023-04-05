@@ -2,12 +2,10 @@ const jwt = require('jsonwebtoken');
 const User = require('./usersSchema');
 const hash = require('hash.js');
 const dotenv = require ('dotenv'); 
-const tokenBL = require('./tokenBL');
 
 dotenv.config();
 
 const key = process.env.A_SECRET;
-const refreshKey = process.env.R_SECRET;
 const properSalt = process.env.PROPER_SALT;
 
 const login = async (user) => {
@@ -23,20 +21,7 @@ const login = async (user) => {
                 expiresIn : 60 * 24 * 1000
             }
         ); 
-        let refreshToken = jwt.sign(
-            { id : userExists.id },
-            refreshKey, 
-            {
-                expiresIn : 72000
-            }
-        );
-        await User.findByIdAndUpdate(userExists.id, {token : refreshToken});
-            const response = {
-                "Logged In" : true,
-                "token" : accessToken,
-                "refresh" : refreshToken
-            }
-        return response;
+        return accessToken;
     }
 
     let checkUsername = await User.findOne({ "username" : user.username });
@@ -50,4 +35,12 @@ const login = async (user) => {
 
 };
 
-module.exports = { login };
+const register = async (newUser) => {
+
+    let addUser = new User(newUser);
+    let newUserDetails = await addUser.save();
+    return newUserDetails.id;
+}
+
+
+module.exports = { login, register };

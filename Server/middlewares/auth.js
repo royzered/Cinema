@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const tokenBL = require('../models/tokenBL');
 
 function authToken(req, resp, next) { 
     const authHeader = req.headers['authorization'];
