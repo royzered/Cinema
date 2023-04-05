@@ -6,7 +6,7 @@ router = express.Router();
 router.post('/', async function(req, resp) {
     let logUser = req.body;
     let loginFunc = await usersBL.login(logUser);
-    resp.cookie("token", loginFunc.refresh, {httpOnly : true, sameStie :'None' , maxAge : 24 * 60 * 60});
+    resp.cookie("token", loginFunc, {httpOnly : true, sameStie :'None' , maxAge : 24 * 60 * 60});
     return resp.json(loginFunc);
 });
 

@@ -1,2 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/moviesDB");
+const dotenv = require ('dotenv'); 
+dotenv.config();
+
+const dbContext = process.env.DATABASE_CONTEXT;
+
+mongoose.connect(dbContext);
