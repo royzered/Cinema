@@ -26,12 +26,13 @@ useEffect(() => {
     <div className="App">
       <header>
         <h1> 
-          Filmholic
+          OnFilm
         </h1>
       </header>
       <table>
         {
           movies.map(movie => {
+            console.log(movie);
            return( <tbody> <tr>
             <td>
               <img className='moviePoster' src={movie.image} alt={movie.name} />
@@ -40,15 +41,11 @@ useEffect(() => {
               {movie.name}
             </td>
             <td>
-              {/* <ul>
-                {
-              movie.genres.map(genre => {
-                return (
-                  <li key={genre}> {genre} </li>
-                )
-                })
-              }
-              </ul>   */}
+               <ul>
+               {
+                (movie && movie.genres) && movie.genres.map(genre => <li>{genre}</li>)
+               }
+              </ul> 
             </td>
            </tr> 
            </tbody> )

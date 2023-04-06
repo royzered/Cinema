@@ -8,8 +8,12 @@
 }
 
 header {
-  background-color: #282c34;
-  color: rgb(235, 230, 230);
+  text-align: left;
+}
+
+body {
+  background: linear-gradient(to right, #000022, #050229);
+  color: whitesmoke;
 }
 
 .App-logo {
@@ -40,6 +44,10 @@ header {
 .moviePoster {
   width: 200px;
   height: auto;
+  transition: 0.4s;
+}
+.moviePoster:hover{
+  width: 250px;
 }
 
 @keyframes App-logo-spin {
