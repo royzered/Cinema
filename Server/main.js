@@ -15,7 +15,13 @@ const usersRouter = require('./routers/usersRouter');
 const authToken = require('./middlewares/auth');
 
 app.use(express.json());
-app.use(cors());
+
+const acceptedOrigin = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
+app.use(cors({
+    origin : acceptedOrigin, 
+    credentials : true
+}));
 app.use(cookieParser());
 
 app.use("/api/movies", authToken, movieRouter);

@@ -7,19 +7,21 @@
   box-sizing: border-box;
 }
 
-header {
-  text-align: left;
-}
-
 body {
   background: linear-gradient(to right, #000022, #050229);
   color: whitesmoke;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header {
+  text-align: left;
 }
+
+input {
+  font-size: larger;
+  background: transparent;
+  color: whitesmoke;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -41,6 +43,7 @@ body {
 .App-link {
   color: #61dafb;
 }
+
 .moviePoster {
   width: 200px;
   height: auto;
@@ -50,11 +53,3 @@ body {
   width: 250px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

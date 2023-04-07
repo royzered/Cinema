@@ -2,11 +2,13 @@ const jwt = require('jsonwebtoken');
 const User = require('./usersSchema');
 const hash = require('hash.js');
 const dotenv = require ('dotenv'); 
+const { response } = require('express');
 
 dotenv.config();
 
 const key = process.env.A_SECRET;
 const properSalt = process.env.PROPER_SALT;
+
 
 const login = async (user) => {
 
@@ -21,18 +23,18 @@ const login = async (user) => {
                 expiresIn : 60 * 24 * 1000
             }
         ); 
-        return accessToken;
-    }
-
-    let checkUsername = await User.findOne({ "username" : user.username });
-    if(checkUsername) 
-    {
-        return "Incorrect Password"
+        return {token : accessToken, status : "🪙"};
     }
     else {
-        return "Incorrect Username / Password";
+    let checkUsername = await User.findOne({ "username" : user.username });
+    if(checkUsername) {
+        return {status : "Incorrect Password"};
     }
 
+    else {
+        return {status : "Incorrect Username / Password"};
+    }
+    }
 };
 
 const register = async (newUser) => {
