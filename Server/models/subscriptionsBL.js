@@ -3,7 +3,7 @@ const Subscription = require('./subscriptionSchema');
 const mongoose = require('mongoose');
 
 const getDetailedSubs = async () => {
-    return Subscription.aggregate([ 
+    return Subscription.aggregate([
      { 
          "$lookup" :
          {
@@ -21,8 +21,17 @@ const getDetailedSubs = async () => {
              "foreignField" : "_id",
              "as" : "MemberDetails"
          }
-     }
-     ]);
+     },
+     {
+        "$unwind": "$MovieDetails"
+    },
+    {
+        "$unwind": "$MemberDetails"
+    },
+    {
+        "$replaceRoot" :{ "newRoot" : { "$mergeObjects" : ["$MovieDetails", "$MemberDetails"]} }
+    }
+    ]);
  };
 
 const getSubdetails = (id) => { 
