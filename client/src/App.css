@@ -35,16 +35,13 @@ a {
 }
 
 table {
-  width: 50%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   border: none;
 }
 
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+td {
+  padding: 35px;
 }
 
 .App-header {
@@ -54,10 +51,6 @@ table {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #ffffff;
 }
 
 .moviePoster {

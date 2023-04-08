@@ -1,7 +1,8 @@
 import './App.css';
 import {Routes, Route, Link} from 'react-router-dom'
-import FilmComponent from './Components/MovieComponent/FilmComponent';
+import MoviesComponent from './Components/MoviesComponent/MoviesComponent';
 import LoginComponent from './Components/LoginComponent/LoginComponent';
+import MovieComponent from './Components/MovieComponent/MoviesComponent';
 
 function App() {
 
@@ -18,7 +19,9 @@ function App() {
 
       <Routes>
         <Route path={"/login"} element={<LoginComponent />}></Route>
-        <Route path={"/"} element={<FilmComponent  />}></Route>
+        <Route path={"/"} element={<MoviesComponent  />}></Route>
+        <Route path={"/:id"} element={<MovieComponent  />}></Route>
+
       </Routes>
 
     </div>

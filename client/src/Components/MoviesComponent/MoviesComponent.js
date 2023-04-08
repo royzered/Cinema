@@ -3,7 +3,7 @@ import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function FilmComponent() {
+function MoviesComponent() {
 
   
 const [movies, setMovies] = useState([{}]);
@@ -59,4 +59,4 @@ useEffect(() => {
   );
 }
 
-export default FilmComponent;
+export default MoviesComponent;
