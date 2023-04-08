@@ -2,7 +2,7 @@ import './App.css';
 import {Routes, Route, Link} from 'react-router-dom'
 import MoviesComponent from './Components/MoviesComponent/MoviesComponent';
 import LoginComponent from './Components/LoginComponent/LoginComponent';
-import MovieComponent from './Components/MovieComponent/MoviesComponent';
+import MovieComponent from './Components/MovieComponent/MovieComponent';
 
 function App() {
 

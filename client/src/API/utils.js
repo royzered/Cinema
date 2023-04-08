@@ -14,4 +14,8 @@ const getMovie = async (id) => {
    return axios.get(`http://127.0.0.1:8000/api/movies/${id}`, { withCredentials : true});
 }
 
-export default { getMovies, getMovie };
+const getSubs = async () => {
+   return axios.get("http://127.0.0.1:8000/api/subs", { withCredentials : true });
+}
+
+export default { getMovies, getMovie, getSubs };

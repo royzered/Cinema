@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function MovieComponent() {
 
-  
 const [movies, setMovies] = useState([{}]);
 
 const token = sessionStorage["token"];
@@ -21,9 +20,9 @@ useEffect(() => {
   async function getMovie()
     {
       let getMovie = await utils.getMovie();
-      setMovies(moviesFromServer.data);
+      setMovies(getMovie.data);
     }
-    getMovies();
+    getMovie();
 }, []);
 
   return (
@@ -36,11 +35,10 @@ useEffect(() => {
           movies.map(movie => {
            return( <tbody> <tr>
             <td>
-              <img className='moviePoster' src={movie.image} alt={movie.name} />
-
+              <img className='moviePoster' src={movie.image} alt={movie.nameFilm} />
             </td>
             <td style={{fontWeight : "bold"}}>
-              {movie.name}
+              {movie.filmName} {movie.year}
             </td>
             <td>
                <ul>

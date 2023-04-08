@@ -37,7 +37,7 @@ a {
 table {
   margin-left: auto;
   margin-right: auto;
-  border: none;
+  text-align: center;
 }
 
 td {
@@ -59,9 +59,9 @@ td {
   border-radius: 3px;
   transition: 0.4s;
 }
-.moviePoster:hover{
-  width: 210px;
-  box-shadow:rgb(255, 255, 255) 1px 1px 10px;
+
+tr:hover {
+  background: rgb(164, 227, 164);
 }
 
 ul {

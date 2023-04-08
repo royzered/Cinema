@@ -6,7 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 function MoviesComponent() {
 
   
-const [movies, setMovies] = useState([{}]);
+  const [movies, setMovies] = useState([{}]);
+  const [subs, setSubs] = useState([{}]);
 
 const token = sessionStorage["token"];
 const navigate = useNavigate();
@@ -23,8 +24,14 @@ useEffect(() => {
       let moviesFromServer = await utils.getMovies();
       setMovies(moviesFromServer.data);
     }
+
+    async function getSubs() {
+      let getSubs = await utils.getSubs();
+      setSubs(getSubs.data);
+    }
     getMovies();
-}, []);
+    getSubs();
+  }, []);
 
   return (
     <div className="App">
@@ -37,10 +44,9 @@ useEffect(() => {
            return( <tbody> <tr>
             <td>
               <img className='moviePoster' src={movie.image} alt={movie.name} />
-
             </td>
             <td style={{fontWeight : "bold"}}>
-              {movie.name}
+              {movie.filmName} ({movie.released})
             </td>
             <td>
                <ul>
@@ -48,6 +54,21 @@ useEffect(() => {
                 (movie && movie.genres) && movie.genres.map(genre => <li>{genre}</li>)
                }
               </ul> 
+            </td>
+            <td>
+               <h4>Subscribed</h4>
+                <ul>
+                  {
+                subs.filter(sub => sub.filmName == movie.filmName).map(sub => {
+                    return (
+                      <li key={sub.name}>
+                        {sub.name}
+                      </li>
+                    )
+                })
+              
+              }
+              </ul>
             </td>
            </tr> 
            </tbody> )
