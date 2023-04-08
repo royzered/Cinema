@@ -29,7 +29,7 @@ const getDetailedSubs = async () => {
         "$unwind": "$MemberDetails"
     },
     {
-        "$replaceRoot" :{ "newRoot" : { "$mergeObjects" : ["$MovieDetails", "$MemberDetails"]} }
+        "$replaceRoot" :{ "newRoot" : { "$mergeObjects" : ["$MovieDetails", "$MemberDetails", {"date" : "$date"}]} }
     }
     ]);
  };
