@@ -11,7 +11,7 @@
 
 body {
   color: black;
-  background-color: rgb(234, 231, 231);
+  background-color: rgb(227, 224, 224);
   font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -38,10 +38,12 @@ table {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  border-collapse: collapse;
 }
 
 td {
-  padding: 35px;
+  height: min-content;
+  margin: 15px;
 }
 
 .App-header {
@@ -61,10 +63,14 @@ td {
 }
 
 tr:hover {
+  border-radius: 3px;
   background: rgb(164, 227, 164);
 }
 
 ul {
   list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 

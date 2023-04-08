@@ -36,7 +36,7 @@ useEffect(() => {
   return (
     <div className="App">
       <h2>
-        Films Playing
+       Playing
       </h2>
       <table>
         {
@@ -62,13 +62,19 @@ useEffect(() => {
                 subs.filter(sub => sub.filmName == movie.filmName).map(sub => {
                     return (
                       <li key={sub.name}>
-                        {sub.name}
+                        {sub.name} {sub.date}
                       </li>
                     )
                 })
               
               }
               </ul>
+            </td>
+            <td>
+              <button className='editButton'> EDIT </button>
+            </td>
+            <td>
+            <button className='deleteButton'> DELETE </button>
             </td>
            </tr> 
            </tbody> )
