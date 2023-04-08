@@ -1,10 +1,13 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function FilmComponent() {
+
+  
 const [movies, setMovies] = useState([{}]);
+
 const token = sessionStorage["token"];
 const navigate = useNavigate();
 
@@ -25,14 +28,18 @@ useEffect(() => {
 
   return (
     <div className="App">
+      <h2>
+        Films Playing
+      </h2>
       <table>
         {
           movies.map(movie => {
            return( <tbody> <tr>
             <td>
               <img className='moviePoster' src={movie.image} alt={movie.name} />
+
             </td>
-            <td>
+            <td style={{fontWeight : "bold"}}>
               {movie.name}
             </td>
             <td>
