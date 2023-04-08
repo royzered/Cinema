@@ -10,7 +10,9 @@ function App() {
     <div className="App">
       <header>
         <h1> 
-          OnFilm
+         <Link to={"/"}>
+         OnFilm
+         </Link>
         </h1>
       </header>
 

@@ -1,18 +1,26 @@
 import '../../App.css';
-import axios from 'axios';
+import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function FilmComponent() {
-
-let [movies, setMovies] = useState([{}]);
-
-const moviesData = async () => {
-let resp = await axios.get("http://127.0.0.1:8000/api/movies");
-setMovies(resp.data);
-}
+const [movies, setMovies] = useState([{}]);
+const token = sessionStorage["token"];
+const navigate = useNavigate();
 
 useEffect(() => {
-  moviesData();
+  if(!token) {
+    navigate("/login");
+  }
+},token );
+
+useEffect(() => {
+  async function getMovies()
+    {
+      let moviesFromServer = await utils.getMovies();
+      setMovies(moviesFromServer.data);
+    }
+    getMovies();
 }, []);
 
   return (

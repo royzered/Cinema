@@ -22,6 +22,11 @@ input {
   color: whitesmoke;
 }
 
+a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
