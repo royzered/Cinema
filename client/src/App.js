@@ -19,17 +19,19 @@ function App() {
     <div className="App">
       <header>
         <h1> 
-         <Link to={"/"}>
          OnFilm
-         </Link>
         </h1>
+        <nav style={{color:"whitesmoke"}}>
+        <Link to={"/"}>Movies</Link>&nbsp;
+        <Link>Subscriptions</Link>
+        </nav>
         {getToken && <button onClick={logout} className='logoutButton'>Log Out</button> }
       </header>
 
       <Routes>
         <Route path={"/login"} element={<LoginComponent />}></Route>
         <Route path={"/"} element={<MoviesComponent  />}></Route>
-        <Route path={"/:id"} element={<MovieComponent  />}></Route>
+        <Route path={"/movie/:id"} element={<MovieComponent  />}></Route>
 
       </Routes>
 

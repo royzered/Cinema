@@ -8,7 +8,7 @@ function MoviesComponent() {
 
   const [subs, setSubs] = useState([{}]);
 
-  const movieStoreData = useSelector(state => state);
+  const movieStoreData = useSelector(state => state.movies);
 
 const token = sessionStorage["token"];
 const navigate = useNavigate();
@@ -42,28 +42,18 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <h2>
-      Films Playing
+      <h2 style={{background : "lime", color : 'black'}}>
+      Films Playing 
       </h2>
       <table>
         {
-          // movieStoreData.movies.map(movie => {
-          //   return (
-          //     <ul>
-          //       <li>
-          //         {movie.filmName}
-          //       </li>
-          //     </ul>
-          //   )
-          // })
-
         movieStoreData.movies.map(movie => {
            return( <tbody> <tr>
             <td>
               <img className='moviePoster' src={movie.image} alt={movie.name} />
             </td>
             <td style={{fontWeight : "bold"}}>
-              {movie.filmName} ({movie.released})
+             <Link to={`movie/${movie._id}`}> {movie.filmName} ({movie.released})  </Link>
             </td>
             <td>
                <ul>
@@ -73,7 +63,7 @@ useEffect(() => {
               </ul> 
             </td>
             <td>
-               <h4>Subscribed</h4>
+             { subs.filter(sub => sub.filmName === movie.filmName).length > 0 ? <h4>Subscribed</h4> : <h4>No Subscriptions</h4> }
                 <ul>
                   {
                 subs.filter(sub => sub.filmName === movie.filmName).map(sub => {
@@ -83,7 +73,6 @@ useEffect(() => {
                       </li>
                     )
                 })
-              
               }
               </ul>
             </td>
