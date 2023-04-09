@@ -1,11 +1,10 @@
 const subsReducer = (state = {subs : []}, action) => {
     switch(action.type) {
-        case "GETDATA" : 
+        case "GETSUBSDATA" : 
             return {...state, subs : action.payload  }
 
             
-            
-            
+        
             default: 
             return state
         }

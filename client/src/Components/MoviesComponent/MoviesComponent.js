@@ -1,18 +1,18 @@
 import '../../App.css';
 import utils  from '../../API/utils';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MoviesComponent() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [subs, setSubs] = useState([{}]);
+  const token = sessionStorage["token"];
 
   const movieStoreData = useSelector(state => state.movies);
+  const subStoreData = useSelector(state => state.subs);
 
-const token = sessionStorage["token"];
-const navigate = useNavigate();
-const dispatch = useDispatch();
 
 useEffect(() => {
    function checkToken(token) {
@@ -32,7 +32,7 @@ useEffect(() => {
   
   async function getSubs() {
     let getSubs = await utils.getSubs();
-    setSubs(getSubs.data);
+    dispatch({type : "GETSUBSDATA", payload : getSubs.data})
   };
   
   getMovies();
@@ -63,10 +63,10 @@ useEffect(() => {
               </ul> 
             </td>
             <td>
-             { subs.filter(sub => sub.filmName === movie.filmName).length > 0 ? <h4>Subscribed</h4> : <h4>No Subscriptions</h4> }
+             { subStoreData.subs.filter(sub => sub.filmName === movie.filmName).length > 0 ? <h4>Subscribed</h4> : <h4>No Subscriptions</h4> }
                 <ul>
                   {
-                subs.filter(sub => sub.filmName === movie.filmName).map(sub => {
+                subStoreData.subs.filter(sub => sub.filmName === movie.filmName).map(sub => {
                     return (
                       <li key={sub.name}>
                         {sub.name} {sub.date}
