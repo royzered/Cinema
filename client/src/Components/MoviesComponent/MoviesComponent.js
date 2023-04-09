@@ -42,8 +42,8 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <h2 style={{background : "lime", color : 'black'}}>
-      Films Playing 
+      <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
+      Films Playing
       </h2>
       <table>
         {

@@ -23,7 +23,6 @@ useEffect(() => {
   }
 },token );
 
-
 useEffect(() => {
  setMovie( moviesData.movies.find(movie => movie._id === id));
  setSubs(subStoreData.subs.filter(sub => sub.movieID === id));
@@ -31,15 +30,29 @@ useEffect(() => {
 
   return (
     <div className="App">
+    <img src={movie.image} width={"500px"} style={{right : 0, position : "absolute", top : "55px", width : "50%", height : "91%"}} />
+    <section className='movieDetailsSection'>
+      <br />
     <h1 className='filmName'>{movie.filmName}</h1>
-    <img src={movie.image} width={"200px"}/>
-    <section>
-     <h5> Release Year </h5> 
+     <h3> Release Year </h3> 
      {movie.released}
-    
-    </section>
-    <br />
-    <h3>Watched Film</h3>
+     <br /> <br />
+     <h3>Genres</h3>
+      <ul>
+        {
+          movie.genres && movie.genres.map(genre => {
+            return (
+              <li>
+                {genre}
+              </li>
+            )
+          })
+        }
+      </ul> 
+      <br /> <br />
+    {
+     subs.length > 0 ? <h3>Watched Film</h3> : <h4> No Subscriptions </h4>
+    }
       <ul>
       {
         subs.map(sub => {
@@ -51,6 +64,7 @@ useEffect(() => {
         })
       }
       </ul>
+    </section>
     </div>
   );
 }

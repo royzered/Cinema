@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
 
 .App {
   text-align: center;
@@ -31,10 +31,11 @@ h1{
 }
 
 .filmName {
-  font-family: 'futura';
+  font-family:'Slabo 27px', serif;
   font-size: 30px;
-  color: #000000;
+  color: #FFD700;
   font-weight: 800;
+  background: #000000;
 }
 
 a {
@@ -78,6 +79,12 @@ td {
 .logoutButton:hover{
   border: lime solid 0.5px;
   border-style: dashed;
+}
+.movieComp {
+  text-align: left;
+}
+.movieDetailsSection, .movieDetailsGenres {
+  text-align: left;
 }
 
 .moviePoster {
