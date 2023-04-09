@@ -11,7 +11,7 @@ const getMovie = (id) => {
 const addMovie = async (newMovie) => {
     let addMovie = new Movie(newMovie);
     await addMovie.save();
-    return `${addMovie.name} Added.`
+    return `${addMovie.filmName} Added.`
 };
 
 const updateMovie = async (id, detailsUpdate) => {
@@ -19,7 +19,7 @@ const updateMovie = async (id, detailsUpdate) => {
 };
 
 const deleteMovie = async (id) => {
-    await Movie.findByIdAndRemove(id);
+    await Movie.findByIdAndDelete(id);
 };
 
 module.exports = { getMovies, getMovie, addMovie, updateMovie, deleteMovie };
