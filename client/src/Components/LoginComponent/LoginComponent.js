@@ -18,6 +18,10 @@ useEffect(() => {
   }
 }, [])
 
+useEffect(() => {
+
+}, [loginData])
+
 const login = async () => {
   try {
     let trylogin = await axios.post("http://127.0.0.1:8000/login", user, {withCredentials: true, credentials: 'include'});
@@ -43,7 +47,7 @@ const login = async () => {
       <span className='loginInputSpan'>
         
      Username  <input placeholder="Enter Username" type='text' onChange={(e) => setUser({...user, username : e.target.value})} /> <br/>
-     Password <input placeholder="Enter Password" type="password" onChange={(e) => setUser({...user, password : e.target.value})}  /> <br />
+     Password <input defaultValue={""} placeholder="Enter Password" type="password" onChange={(e) => setUser({...user, password : e.target.value})}  /> <br />
     <button onClick={login}> Enter </button>
     <br />
     {

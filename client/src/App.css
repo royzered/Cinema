@@ -44,6 +44,7 @@ table {
 td {
   height: min-content;
   margin: 15px;
+  padding: 3px;
 }
 
 .App-header {
@@ -55,6 +56,22 @@ td {
   font-size: calc(10px + 2vmin);
 }
 
+.logoutButton {
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  background-color: black;
+  color: whitesmoke;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+.logoutButton:hover{
+  border: lime solid 0.5px;
+  border-style: dashed;
+}
+
 .moviePoster {
   width: 200px;
   height: auto;
@@ -64,7 +81,7 @@ td {
 
 tr:hover {
   border-radius: 3px;
-  background: rgb(164, 227, 164);
+  background: rgba(164, 227, 164, 0.356);
 }
 
 ul {

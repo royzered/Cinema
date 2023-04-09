@@ -1,11 +1,19 @@
 import './App.css';
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import MoviesComponent from './Components/MoviesComponent/MoviesComponent';
 import LoginComponent from './Components/LoginComponent/LoginComponent';
 import MovieComponent from './Components/MovieComponent/MovieComponent';
 
 function App() {
+  const navigate = useNavigate();
 
+  let getToken = sessionStorage["token"];
+  const logout = () => {
+    if(getToken) {
+      sessionStorage.removeItem("token");
+      navigate("/");
+    };
+  };
 
   return (
     <div className="App">
@@ -15,6 +23,7 @@ function App() {
          OnFilm
          </Link>
         </h1>
+        {getToken && <button onClick={logout} className='logoutButton'>Log Out</button> }
       </header>
 
       <Routes>

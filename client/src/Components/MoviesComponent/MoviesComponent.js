@@ -59,7 +59,7 @@ useEffect(() => {
                <h4>Subscribed</h4>
                 <ul>
                   {
-                subs.filter(sub => sub.filmName == movie.filmName).map(sub => {
+                subs.filter(sub => sub.filmName === movie.filmName).map(sub => {
                     return (
                       <li key={sub.name}>
                         {sub.name} {sub.date}
