@@ -14,5 +14,11 @@ router.post('/', async function(req, resp) {
 });
 
 
+router.post('/register', async function(req, resp) {
+    let newUser = req.body;
+    let registerUser = await usersBL.register(newUser);
+
+    return resp.json(registerUser);
+});
 
 module.exports = router;

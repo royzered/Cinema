@@ -38,8 +38,9 @@ const login = async (user) => {
 };
 
 const register = async (newUser) => {
-
-    let addUser = new User(newUser);
+    let userPasswordHash = hash.sha256().update(newUser.password + properSalt).digest('hex');
+    let newUserAfterHash = {...newUser, password : userPasswordHash}
+    let addUser = new User(newUserAfterHash);
     let newUserDetails = await addUser.save();
     return newUserDetails.id;
 }
