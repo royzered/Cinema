@@ -2,45 +2,62 @@ import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function MoviesComponent() {
 
-  
-  const [movies, setMovies] = useState([{}]);
   const [subs, setSubs] = useState([{}]);
+
+  const movieStoreData = useSelector(state => state);
 
 const token = sessionStorage["token"];
 const navigate = useNavigate();
+const dispatch = useDispatch();
 
 useEffect(() => {
+   function checkToken(token) {
   if(!token) {
     navigate("/login");
   }
-},token );
+  }
+  checkToken(token);
+}, [token] );
 
 useEffect(() => {
-  async function getMovies()
-    {
-      let moviesFromServer = await utils.getMovies();
-      setMovies(moviesFromServer.data);
-    }
 
-    async function getSubs() {
-      let getSubs = await utils.getSubs();
-      setSubs(getSubs.data);
-    }
-    getMovies();
-    getSubs();
-  }, []);
+  async function getMovies() {
+      let moviesFromServer = await utils.getMovies();
+      dispatch({type : "GETDATA", payload : moviesFromServer.data})
+  }
+  
+  async function getSubs() {
+    let getSubs = await utils.getSubs();
+    setSubs(getSubs.data);
+  };
+  
+  getMovies();
+  getSubs();
+
+  },[]);
 
   return (
     <div className="App">
       <h2>
-       Playing
+      Films Playing
       </h2>
       <table>
         {
-          movies.map(movie => {
+          // movieStoreData.movies.map(movie => {
+          //   return (
+          //     <ul>
+          //       <li>
+          //         {movie.filmName}
+          //       </li>
+          //     </ul>
+          //   )
+          // })
+
+        movieStoreData.movies.map(movie => {
            return( <tbody> <tr>
             <td>
               <img className='moviePoster' src={movie.image} alt={movie.name} />
@@ -79,9 +96,8 @@ useEffect(() => {
            </tr> 
            </tbody> )
           })
-        }
+         }
       </table>
-     
     </div>
   );
 }
