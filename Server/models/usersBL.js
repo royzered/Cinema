@@ -26,12 +26,12 @@ const login = async (user) => {
         return {token : accessToken, status : "🪙"};
     }
     else {
-    let checkUsername = await User.findOne({ "username" : user.username });
-    if(checkUsername) {
-        return {status : "Incorrect Password"};
-    }
-
-    else {
+        let checkUsername = await User.findOne({ "username" : user.username });
+        if(checkUsername) {
+            return {status : "Incorrect Password"};
+        }
+        
+        else {
         return {status : "Incorrect Username / Password"};
     }
     }

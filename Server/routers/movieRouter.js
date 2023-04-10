@@ -29,12 +29,9 @@ router.post('/', async function(req, resp) {
 
 router.delete('/:id', async function(req, resp) {
     let id = req.params.id;
-    try {
         await movieBL.deleteMovie(id);
-        return `Movie Deleted`;
-    } catch (error) {
-        return error;
-    }
+        return resp.json("Deleted");
+   
 });
 
 

@@ -7,9 +7,9 @@ router.post('/', async function(req, resp) {
     let logUser = req.body;
     let loginFunc = await usersBL.login(logUser);
     if(loginFunc.token) {
-    resp.cookie("token", loginFunc.token, { httpOnly : true, sameStie :'None', secure : true , maxAge : 24 * 60 * 60 });
 }
-    
+    const loginData =  {token : loginFunc, username : logUser.username};
+    console.log(loginData);
     return resp.json(loginFunc);
 });
 
