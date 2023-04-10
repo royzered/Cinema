@@ -30,7 +30,7 @@ useEffect(() => {
 
   return (
     <div className="App">
-    <img src={movie.image} width={"500px"} style={{right : 0, position : "absolute", top : "55px", width : "50%", height : "91%"}} />
+    <img src={movie.image} width={"500px"} style={{right : 0, position : "absolute", top : "55px", width : "50%", height : "100%"}} />
     <section className='movieDetailsSection'>
       <br />
     <h1 className='filmName'>{movie.filmName}</h1>

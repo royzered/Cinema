@@ -6,19 +6,27 @@ axios.interceptors.request.use((req) => {
    return req;
 })
 
+const moviesAPI = "http://127.0.0.1:8000/api/movies";
+
+const subsAPI = "http://127.0.0.1:8000/api/subs";
+
 const getMovies = async () => {
-   return axios.get("http://127.0.0.1:8000/api/movies", { withCredentials : true});
+   return axios.get(moviesAPI, { withCredentials : true});
 }
 
-const getMovie = async (id) => {
-   return axios.get(`http://127.0.0.1:8000/api/movies/${id}`, { withCredentials : true});
+// const getMovie = async (id) => {
+//    return axios.get(`${moviesAPI}/${id}`, { withCredentials : true});
+// }
+
+const removeMovie = async (id) => {
+   return axios.delete(`${moviesAPI}/${id}`);
 }
 
 const getSubs = async () => {
-   return axios.get("http://127.0.0.1:8000/api/subs", { withCredentials : true });
+   return axios.get(subsAPI, { withCredentials : true });
 }
 
 
-const utils = { getMovies, getMovie, getSubs};
+const utils = { getMovies, removeMovie, getSubs};
 
 export default utils;

@@ -14,6 +14,7 @@ function MoviesComponent() {
   const subStoreData = useSelector(state => state.subs);
 
 
+
 useEffect(() => {
    function checkToken(token) {
   if(!token) {
@@ -22,6 +23,8 @@ useEffect(() => {
   }
   checkToken(token);
 }, [token] );
+
+
 
 useEffect(() => {
 
@@ -40,11 +43,29 @@ useEffect(() => {
 
   },[]);
 
+
+
+  const deleteMovie = async (id) => {
+    let deleteMovie = await utils.removeMovie(id);
+    return deleteMovie;
+  }
+
+
+  const deleteFilmRedux = (id) => {
+    dispatch({type : "DELETEMOVIE", payload : id})
+  };
+
+  
+
+
   return (
     <div className="App">
+      <span>
       <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
       Films Playing
       </h2>
+      <input className='searchInput' type='text' placeholder='Search'/> 
+      </span>
       <table>
         {
         movieStoreData.movies.map(movie => {
@@ -80,7 +101,7 @@ useEffect(() => {
               <button className='editButton'> EDIT </button>
             </td>
             <td>
-            <button className='deleteButton'> DELETE </button>
+            <button className='deleteButton' onClick={() => {deleteMovie(movie._id) && deleteFilmRedux(movie._id)}}> DELETE </button>
             </td>
            </tr> 
            </tbody> )

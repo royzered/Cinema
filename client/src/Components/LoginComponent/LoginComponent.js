@@ -18,17 +18,15 @@ useEffect(() => {
   }
 }, [])
 
-useEffect(() => {
-
-}, [loginData])
-
 const login = async () => {
   try {
-    let trylogin = await axios.post("http://127.0.0.1:8000/login", user, {withCredentials: true, credentials: 'include'});
+    let trylogin = await axios.post("http://127.0.0.1:8000/login", user,  {withCredentials: true, headers: { 'Content-Type': 'application/json' }});
     setloginData(trylogin.data);
-    sessionStorage.setItem("token", trylogin.data.token)
+    sessionStorage.setItem("token", trylogin.data.token);
+    sessionStorage.setItem("username", user.username);
+
     if(trylogin.data.token) {
-      navigate("/")
+        navigate("/")
     }
   } 
   catch (error) {
