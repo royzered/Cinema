@@ -8,7 +8,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import appReducers from './redux/reducers';
 
-
 const appStore = createStore(appReducers);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

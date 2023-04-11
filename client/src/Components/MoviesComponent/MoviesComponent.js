@@ -9,13 +9,13 @@ function MoviesComponent() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const token = sessionStorage["token"];
 
   const movieStoreData = useSelector(state => state.movies);
   const subStoreData = useSelector(state => state.subs);
 
   const [search, setSearch] = useState([]);
 
+  const token = sessionStorage["token"];
 
 useEffect(() => {
    function checkToken(token) {
@@ -45,32 +45,28 @@ useEffect(() => {
 
   },[]);
 
-
-
   const deleteMovie = async (id) => {
     let deleteMovie = await utils.removeMovie(id);
+    dispatch({type : "DELETEMOVIE", payload : id});
+    let newMovies = search.filter(movie => movie._id !== id);
+      setSearch(newMovies);    
     return deleteMovie;
   }
 
-
-  const deleteFilmRedux = (id) => {
-    dispatch({type : "DELETEMOVIE", payload : id})
-  };
-
-  const searchFilm = (input) => {
-    return setSearch(movieStoreData.movies.filter(movie => {
-      const movieName = movie.filmName.toLowerCase();
-      const searchInput = input.toLowerCase();
-      return movieName.includes(searchInput);
-    }));
-  }
+    const searchFilm = (input) => {
+       setSearch(movieStoreData.movies.filter(movie => {
+        const movieName = movie.filmName.toLowerCase();
+        const searchInput = input.toLowerCase();
+        return movieName.includes(searchInput);
+      }));
+    }
 
 
   return (
     <div className="App">
       <span>
       <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
-      Films Playing
+      Films 
       </h2>
       <input onKeyUpCapture={(e) => {searchFilm(e.target.value)}} onClick={(e) => { searchFilm(e.target.value); e.target.value = '';}} className='searchInput' type='text' placeholder='Search'/> 
       <Link title="Add Film" style={{fontSize : "30px", position : 'absolute', width : "2%", top: "9.5%", right : "2%"}}> + </Link>
@@ -110,7 +106,7 @@ useEffect(() => {
               <button className='editButton'> EDIT </button>
             </td>
             <td>
-            <button className='deleteButton' onClick={() => {deleteMovie(movie._id) && deleteFilmRedux(movie._id)}}> DELETE </button>
+            <button className='deleteButton' onClick={() => {deleteMovie(movie._id)}}> DELETE </button>
             </td>
            </tr> 
            </tbody> )

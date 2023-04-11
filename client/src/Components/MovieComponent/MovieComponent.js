@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 function MovieComponent() {
 
-const token = sessionStorage["token"];
 const moviesData =  useSelector(state => state.movies);
 const subStoreData =  useSelector(state => state.subs);
 
@@ -17,11 +16,17 @@ let id = useParams().id;
 
 const navigate = useNavigate();
 
+const token = sessionStorage["token"];
+
 useEffect(() => {
+   function checkToken(token) {
   if(!token) {
     navigate("/login");
   }
-},token );
+  }
+  checkToken(token);
+}, [token] );
+
 
 useEffect(() => {
  setMovie( moviesData.movies.find(movie => movie._id === id));

@@ -1,17 +1,19 @@
 import '../../App.css';
 import utils  from '../../API/utils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-function SubscriptionsComponent() {
+function SubscriptionsComponent(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  
+  const subStoreData = useSelector(state => state.subs);
+  
   const token = sessionStorage["token"];
 
-  const movieStoreData = useSelector(state => state.movies);
-  const subStoreData = useSelector(state => state.subs);
+  const [userSubs, setUserSubs] = useState([]);
 
 
 useEffect(() => {
@@ -32,21 +34,28 @@ useEffect(() => {
   };
   
   getSubs();
-
+  setUserSubs(subStoreData.subs.filter(sub => sub.name === props.member));
+ 
   },[]);
 
 
   return (
     <div className="App">
-      <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
-      Members
-      </h2>
                 <ul>
                   {
-                subStoreData.subs.map(sub => {
+                userSubs.map(sub => {
                     return (
                       <li key={sub._id}>
-                        {sub.name} Watched {sub.filmName} @ {sub.date} 
+                        <span>
+                        <br />
+                        <section>
+                          
+                         <h4>Movie Subscriptions</h4> 
+                         
+                          {sub.filmName} | {sub.date} 
+                        
+                        </section>
+                        </span> 
                       </li>
                     )
                 })

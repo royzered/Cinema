@@ -12,8 +12,6 @@ const moviesReducer = (state = {movies : []}, action) => {
             return {...state, movies : mvs} 
             
             
-            
-            
         default: 
             return state
     }

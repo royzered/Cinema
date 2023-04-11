@@ -4,8 +4,11 @@ import MoviesComponent from './Components/MoviesComponent/MoviesComponent';
 import LoginComponent from './Components/LoginComponent/LoginComponent';
 import MovieComponent from './Components/MovieComponent/MovieComponent';
 import SubscriptionsComponent from './Components/SubscriptionsComponent/SubscriptionsComponent';
+import { useEffect } from 'react';
+import MembersComponent from './Components/MembersComponent/MembersComponent';
 
 function App() {
+
   const navigate = useNavigate();
 
   const displayUsername = sessionStorage["username"]; 
@@ -28,7 +31,7 @@ function App() {
         </h1>
         <nav style={{color:"whitesmoke"}}>
         <Link to={"/"}>Movies</Link>&nbsp;
-        <Link to={"subscriptions"}>Subscriptions</Link>
+        <Link to={"members"}>Members</Link>
         </nav>
         <span className='username'>
            {displayUsername}
@@ -41,7 +44,7 @@ function App() {
       <Routes>
         <Route path={"/login"} element={<LoginComponent />}></Route>
         <Route path={"/"} element={<MoviesComponent  />}></Route>
-        <Route path={"/subscriptions"} element={<SubscriptionsComponent  />}></Route>
+        <Route path={"/members"} element={<MembersComponent  />}></Route>
         <Route path={"/movie/:id"} element={<MovieComponent  />}></Route>
 
       </Routes>

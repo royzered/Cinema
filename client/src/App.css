@@ -106,10 +106,12 @@ td {
   border: none;
   font-weight: 600;
   font-size: 14px;
+  border: transparent dashed 0.1px;
+  transition: 0.2s;
 }
 .logoutButton:hover{
-  border: lime solid 0.5px;
-  border-style: dashed;
+  border: lime dashed 0.5px;
+  font-weight: 800;
 }
 .movieComp {
   text-align: left;
@@ -145,3 +147,18 @@ ul {
   padding: 0;
 }
 
+hr {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.addSub {
+  display: inline;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.3s;
+}
+.addSub:hover{
+  font-weight: 800;
+}
