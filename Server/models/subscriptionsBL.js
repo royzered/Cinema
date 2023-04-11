@@ -64,17 +64,17 @@ const getSubdetails = (id) => {
 const addSubscription = async (newSubscription) => {
     console.log(newSubscription);
     let exist = Subscription.find({ memberID : newSubscription.memberID, movieID : newSubscription.movieID });
-    if(!(await exist).length) {
+    if(!(await exist).length > 0) {
         try {
             let newSub = new Subscription(newSubscription);
         let newSubCreate = await newSub.save();
         return newSubCreate._id;
         } catch (error) {
-            return "Already Subscribed."
+            return error
         }
     }
     else  {
-        return "Try Again.";
+        return "Already Subscribed.";
     }
 };
 
@@ -83,7 +83,7 @@ const updateSubscription = async (id, subscriptionUpdate) => {
 };
 
 const deleteSubscription = async (id) => {
-    await Subscription.findByIdAndRemove(id);
+    await Subscription.deleteMany({ movieID : id});
 };
 
 

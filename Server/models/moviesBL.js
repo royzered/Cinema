@@ -1,4 +1,6 @@
 const Movie = require('./movieModel');
+const Subscription = require('./subscriptionSchema');
+const { deleteSubscription } = require('./subscriptionsBL');
 
 const getMovies = () => {
     return Movie.find( {} );
@@ -20,6 +22,9 @@ const updateMovie = async (id, detailsUpdate) => {
 
 const deleteMovie = async (id) => {
     await Movie.findByIdAndDelete(id);
+    if(Subscription.find( { movieID : id} )){
+        await deleteSubscription(id);
+    }
     return "Deleted."
 };
 
