@@ -1,8 +1,9 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
+import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscriptionComponent';
 
 function MembersComponent() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function MembersComponent() {
   const token = sessionStorage["token"];
 
   const [members, setMembers] = useState([]);
+  const [addSubSpan, setAddSubSpan] = useState({});
 
   useEffect(() => {
      function checkToken(token) {
@@ -18,7 +20,7 @@ function MembersComponent() {
     }
     }
     checkToken(token);
-  }, [token] );
+  }, [token, navigate] );
   
 useEffect(() => {
     async function getMembers() {
@@ -49,7 +51,13 @@ useEffect(() => {
                         <button>Delete </button>
                         </section> 
                         <SubscriptionsComponent member={member.name} /> 
-                      <span className='addSub'>+</span>
+                      <span className='addSub' key={member._id} onClick={() => setAddSubSpan({...addSubSpan, [member._id] : !addSubSpan[member._id]})}>
+                        +
+                        </span>
+                        {
+                          addSubSpan[member._id] && 
+                          <AddSubscriptionsComponent memberID={member._id} /> 
+                        }
                         </span>  <br /> <br />
                       </li>
                     )

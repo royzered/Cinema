@@ -27,7 +27,13 @@ input {
   color: rgb(0, 0, 0);
 }
 h1{
+  top: 0;
   color: whitesmoke;
+  font-weight: 800;
+}
+.theFisForFilm {
+  color: lime;
+  font-size: 38px;
 }
 
 .username {
@@ -49,7 +55,8 @@ text-decoration: underline;
 .filmName {
   font-family:'Slabo 27px', serif;
   font-size: 30px;
-  color: #FFD700;
+  /* color: #FFD700; */
+  color: lime;
   font-weight: 800;
   background: #000000;
 }

@@ -24,7 +24,7 @@ useEffect(() => {
   }
   }
   checkToken(token);
-}, [token] );
+}, [token, navigate] );
 
 useEffect(() => {
 
@@ -43,7 +43,7 @@ useEffect(() => {
   getSubs();
   
 
-  },[]);
+  },[dispatch]);
 
   const deleteMovie = async (id) => {
     let deleteMovie = await utils.removeMovie(id);
@@ -76,7 +76,7 @@ useEffect(() => {
         search.map(movie => {
            return( <tbody> <tr>
             <td>
-              <img className='moviePoster' src={movie.image} alt={movie.name} />
+             <Link to={`movie/${movie._id}`}> <img className='moviePoster' src={movie.image} alt={movie.name}/> </Link>
             </td>
             <td style={{fontWeight : "bold"}}>
              <Link to={`movie/${movie._id}`}> <span className='filmNameSpan'>{movie.filmName}</span> ({movie.released})  </Link>
@@ -89,10 +89,10 @@ useEffect(() => {
               </ul> 
             </td>
             <td>
-             { subStoreData.subs.filter(sub => sub.filmName === movie.filmName).length > 0 ? <h4>Subscribed</h4> : <h4>No Subscriptions</h4> }
+             { subStoreData.subs.filter(sub => sub.movieID === movie._id).length > 0 ? <h4>Subscribed</h4> : <h4>No Subscriptions</h4> }
                 <ul>
                   {
-                subStoreData.subs.filter(sub => sub.filmName === movie.filmName).map(sub => {
+                subStoreData.subs.filter(sub => sub.movieID === movie._id).map(sub => {
                     return (
                       <li key={sub.name}>
                         {sub.name} {sub.date}

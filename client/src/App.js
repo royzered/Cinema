@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <header>
         <h1> 
-         OnFilm
+         On<span className='theFisForFilm'>F</span>ilm
         </h1>
         <nav style={{color:"whitesmoke"}}>
         <Link to={"/"}>Movies</Link>&nbsp;

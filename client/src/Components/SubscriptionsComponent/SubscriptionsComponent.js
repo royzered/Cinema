@@ -13,8 +13,7 @@ function SubscriptionsComponent(props) {
   
   const token = sessionStorage["token"];
 
-  const [userSubs, setUserSubs] = useState([]);
-
+  const [userSubs, setUserSubs] = useState([])
 
 useEffect(() => {
    function checkToken(token) {
