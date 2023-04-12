@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MoviesComponent() {
-  let addFilmIcon = "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

@@ -59,9 +59,11 @@ const getSubs = async () => {
    return axios.get(subsAPI, { withCredentials : true });
 }
 
-
+const addSub = async (newSub) => {
+   return axios.post(subsAPI, newSub);
+}
 const utils = { getMovies, addMoive, updateMovie, removeMovie,
                 getMembers, addMember, updateMember, removeMember,
-                getSubs};
+                getSubs, addSub};
 
 export default utils;

@@ -28,7 +28,7 @@ useEffect(() => {
       setMembers(membersData.data); 
     }
     getMembers();
-  },[]);
+  },[members]);
 
 
   return (
@@ -51,12 +51,13 @@ useEffect(() => {
                         <button>Delete </button>
                         </section> 
                         <SubscriptionsComponent member={member.name} /> 
-                      <span className='addSub' key={member._id} onClick={() => setAddSubSpan({...addSubSpan, [member._id] : !addSubSpan[member._id]})}>
+                      <span className='plus' key={member._id} onClick={() => setAddSubSpan({...addSubSpan, [member._id] : !addSubSpan[member._id]})}>
                         +
                         </span>
                         {
                           addSubSpan[member._id] && 
-                          <AddSubscriptionsComponent memberID={member._id} /> 
+                          <AddSubscriptionsComponent  memberID={member._id} /> 
+
                         }
                         </span>  <br /> <br />
                       </li>

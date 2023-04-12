@@ -22,7 +22,7 @@ useEffect(() => {
   }
   }
   checkToken(token);
-}, [token] );
+}, [token, navigate] );
 
 
 useEffect(() => {
@@ -35,11 +35,12 @@ useEffect(() => {
   getSubs();
   setUserSubs(subStoreData.subs.filter(sub => sub.name === props.member));
  
-  },[]);
+  },[subStoreData, props.member, navigate, dispatch]);
 
 
   return (
     <div className="App">
+                  <h4>Movie Subscriptions</h4> 
                 <ul>
                   {
                 userSubs.map(sub => {
@@ -49,9 +50,8 @@ useEffect(() => {
                         <br />
                         <section>
                           
-                         <h4>Movie Subscriptions</h4> 
                          
-                          {sub.filmName} | {sub.date} 
+                         <Link to={`/movie/${sub.movieID}`}> {sub.filmName} </Link>  | {sub.date} 
                         
                         </section>
                         </span> 

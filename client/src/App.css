@@ -134,6 +134,11 @@ td {
   transition: 0.4s;
 }
 
+select {
+  font-size: 16px;
+
+}
+
 tr{
   transition: 0.5s;
 }
@@ -161,11 +166,32 @@ hr {
 }
 
 .addSub {
+  animation: fadeIn 0.3s;
+}
+
+.plus {
   display: inline;
   font-weight: bold;
   font-size: 20px;
   transition: 0.3s;
 }
-.addSub:hover{
+.plus:hover{
   font-weight: 800;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

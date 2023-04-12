@@ -2,6 +2,7 @@ import '../../App.css';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import utils from '../../API/utils';
 
 function AddSubscriptionsComponent(props) {
   const navigate = useNavigate();
@@ -12,6 +13,11 @@ function AddSubscriptionsComponent(props) {
   const subStoreData = useSelector(state => state.subs);
   const [moviesList, setMoviesList] = useState([]);
   const [subsList, setSubsList] = useState([]);
+  let today = new Date().toLocaleDateString()
+
+  const [newSub, setNewSub] = useState({memberID : props.memberID, 
+                                        movieID : "", 
+                                        date : today})
 
 useEffect(() => {
    function checkToken(token) {
@@ -33,14 +39,14 @@ useEffect(() => {
     return filteredMovies;
   }
   movieOptions();
-}, [movieStoreData, subsList, subStoreData.subs, props.memberID ])
+}, [movieStoreData, subsList, subStoreData.subs, props.memberID, newSub ])
 
 
 return (
-  <div className="App">
-          <h4>Add Subscription</h4>
-          <select>
-
+  <div className="addSubDiv">
+          <h4 className='addSub'>Add Subscription</h4>
+          <select onChange={(e) => setNewSub({...newSub, movieID : e.target.value, memberID : props.memberID})}>
+            <option value={null}>Choose Film...</option>
       {
         moviesList.map(movie => {
           return ( 
@@ -49,8 +55,8 @@ return (
         })
       }
       </select>
-     
-       
+     <input className='addSub' onChange={e => setNewSub({...newSub, date : new Date(e.target.value).toLocaleDateString()}) }  type='date' time style={{fontSize : "12px", border : "none"}} />
+       <button onClick={() => {utils.addSub(newSub)}} className='addSub'> ✓ </button>
     </div>
   );
 }
