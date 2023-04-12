@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use("/api/movies", authToken, movieRouter);
 app.use("/api/subs", authToken, subsRouter);
 app.use("/api/members", authToken, membersRouter);
-app.use("/login", usersRouter);
+app.use("/", usersRouter);
 
 app.listen(port, () => {
     console.info(`
@@ -44,6 +44,6 @@ app.listen(port, () => {
     http://127.0.0.1:${port}/api/members
 
     users 
-    http://127.0.0.1:${port}/login
+    http://127.0.0.1:${port}/
     `)
 });
