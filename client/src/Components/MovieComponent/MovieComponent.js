@@ -1,5 +1,4 @@
 import '../../App.css';
-import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -25,17 +24,17 @@ useEffect(() => {
   }
   }
   checkToken(token);
-}, [token] );
+}, [token, navigate] );
 
 
 useEffect(() => {
  setMovie( moviesData.movies.find(movie => movie._id === id));
  setSubs(subStoreData.subs.filter(sub => sub.movieID === id));
-}, []);
+}, [id, moviesData.movies, subStoreData.subs]);
 
   return (
     <div className="App">
-    <img src={movie.image} style={{right : 0, position : "absolute", top : "55px", width : "40%", height : "93%"}} />
+    <img alt={movie.filmName} src={movie.image} style={{right : 0, position : "absolute", top : "55px", width : "40%", height : "93%"}} />
     <section className='movieDetailsSection'>
       <br />
     <h1 className='filmName'>{movie.filmName}</h1>
@@ -56,7 +55,7 @@ useEffect(() => {
       </ul> 
       <br /> <br />
     {
-     subs.length > 0 ? <h3>Watched Film</h3> : <h4> No Subscriptions </h4>
+     subs.length > 0 ? <h3>Watched By</h3> : <h4> No Subscriptions </h4>
     }
       <ul>
       {

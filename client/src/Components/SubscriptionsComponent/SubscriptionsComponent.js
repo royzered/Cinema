@@ -51,7 +51,7 @@ useEffect(() => {
                         <section>
                           
                          
-                         <Link to={`/movie/${sub.movieID}`}> {sub.filmName} </Link>  | {sub.date} 
+                         <Link to={`/movie/${sub.movieID}`} style={{fontWeight : "bold"}}> {sub.filmName} </Link>  | {sub.date} 
                         
                         </section>
                         </span> 
