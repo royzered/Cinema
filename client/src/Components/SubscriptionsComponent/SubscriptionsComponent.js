@@ -40,17 +40,16 @@ useEffect(() => {
 
   return (
     <div className="App">
-                  <h4>Movie Subscriptions</h4> 
+                  <h3>Subscriptions</h3> 
+                  <hr />
                 <ul>
                   {
                 userSubs.map(sub => {
                     return (
                       <li key={sub._id}>
                         <span>
-                        <br />
-                        <section>
-                          
-                         
+                        <section style={{padding : "3.5px"}}>
+                        
                          <Link to={`/movie/${sub.movieID}`} style={{fontWeight : "bold"}}> {sub.filmName} </Link>  | {sub.date} 
                         
                         </section>

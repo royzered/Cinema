@@ -1,16 +1,17 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import {  Link, useNavigate } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
 import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscriptionComponent';
 
-function MembersComponent() {
+function MemberComponent() {
   const navigate = useNavigate();
 
   const token = sessionStorage["token"];
+  let id = useParams().id;
 
-  const [members, setMembers] = useState([]);
+  const [member, setMember] = useState([]);
   const [addSubSpan, setAddSubSpan] = useState({});
 
   useEffect(() => {
@@ -23,26 +24,23 @@ function MembersComponent() {
   }, [token, navigate] );
   
 useEffect(() => {
-    async function getMembers() {
+    async function getMember() {
       let membersData = await utils.getMembers();
-      setMembers(membersData.data); 
+      setMember(membersData.data.find(member => member._id === id)); 
     }
-    getMembers();
-  },[members]);
+    getMember();
+  },[member, id]);
 
 
   return (
     <div className="App">
       <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
-      Members
+      {member.name}
       </h2>
                 <ul>
-                  {
-                members.map(member => {
-                    return (
+                  {          
                       <li key={member._id}>
                         <span>
-                        <h2> <Link to={`/member/${member._id}`}> {member.name}</Link></h2>
                         <hr />
                         <section>
                         <b> City </b> {member.city} <br />
@@ -58,16 +56,15 @@ useEffect(() => {
                         {
                           addSubSpan[member._id] && 
                           <AddSubscriptionsComponent  memberID={member._id} /> 
-
                         }
                         </span>  <br /> <br />
                       </li>
-                    )
-                })
+                    
+      
               }
               </ul>
     </div>
   );
 }
 
-export default MembersComponent;
+export default MemberComponent;

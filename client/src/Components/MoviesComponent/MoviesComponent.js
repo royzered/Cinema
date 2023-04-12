@@ -94,7 +94,7 @@ useEffect(() => {
                 subStoreData.subs.filter(sub => sub.movieID === movie._id).map(sub => {
                     return (
                       <li key={sub.name}>
-                        {sub.name} {sub.date}
+                       <Link to={`/member/${sub.memberID}`}>{sub.name}</Link> {sub.date}
                       </li>
                     )
                 })

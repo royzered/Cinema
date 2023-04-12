@@ -62,7 +62,7 @@ useEffect(() => {
         subs.map(sub => {
           return (
             <li>
-              {sub.name} <span style={{fontSize : "12px", fontWeight : "bolder"}}>@</span> {sub.date}
+              <Link to={`/member/${sub.memberID}`}> {sub.name} </Link> <span style={{fontSize : "12px", fontWeight : "bolder"}}>@</span> {sub.date}
             </li>
           )
         })

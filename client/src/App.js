@@ -3,9 +3,8 @@ import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import MoviesComponent from './Components/MoviesComponent/MoviesComponent';
 import LoginComponent from './Components/LoginComponent/LoginComponent';
 import MovieComponent from './Components/MovieComponent/MovieComponent';
-import SubscriptionsComponent from './Components/SubscriptionsComponent/SubscriptionsComponent';
-import { useEffect } from 'react';
 import MembersComponent from './Components/MembersComponent/MembersComponent';
+import MemberComponent from './Components/MemberComponent/MemberComponent';
 
 function App() {
 
@@ -45,6 +44,7 @@ function App() {
         <Route path={"/login"} element={<LoginComponent />}></Route>
         <Route path={"/"} element={<MoviesComponent  />}></Route>
         <Route path={"/members"} element={<MembersComponent  />}></Route>
+        <Route path={"/member/:id"} element={<MemberComponent  />}></Route>
         <Route path={"/movie/:id"} element={<MovieComponent  />}></Route>
 
       </Routes>
