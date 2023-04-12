@@ -41,7 +41,6 @@ useEffect(() => {
                   {          
                       <li key={member._id}>
                         <span>
-                        <hr />
                         <section>
                         <b> City </b> {member.city} <br />
                         <b> Email </b> {member.email} <br />

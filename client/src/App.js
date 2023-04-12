@@ -5,6 +5,7 @@ import LoginComponent from './Components/LoginComponent/LoginComponent';
 import MovieComponent from './Components/MovieComponent/MovieComponent';
 import MembersComponent from './Components/MembersComponent/MembersComponent';
 import MemberComponent from './Components/MemberComponent/MemberComponent';
+import AddMovieComponent from './Components/AddMovieComponent/AddMovieComponent';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
         <Route path={"/members"} element={<MembersComponent  />}></Route>
         <Route path={"/member/:id"} element={<MemberComponent  />}></Route>
         <Route path={"/movie/:id"} element={<MovieComponent  />}></Route>
+        <Route path={"/movie/add"} element={<AddMovieComponent />}></Route>
 
       </Routes>
 

@@ -68,7 +68,7 @@ useEffect(() => {
       Films 
       </h2>
       <input onKeyUpCapture={(e) => {searchFilm(e.target.value)}} onClick={(e) => { searchFilm(e.target.value); e.target.value = '';}} className='searchInput' type='text' placeholder='Search'/> 
-      <Link title="Add Film" style={{fontSize : "30px", position : 'absolute', width : "2%", top: "9.5%", right : "2%"}}> + </Link>
+      <Link to={"/movie/add"} title="Add Film" style={{fontSize : "30px", position : 'absolute', width : "2%", top: "9.5%", right : "2%"}}> + </Link>
       </span>
       <table>
         {
