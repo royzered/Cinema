@@ -15,8 +15,16 @@ const getMovies = async () => {
 }
 
 const addMoive = async (newMovie) => {
-   try {
-      return axios.post(moviesAPI, newMovie);
+   let emptyMovie = {filmName : "",
+                     genres : "", 
+                     image : ""}
+         try {
+      if(newMovie.filmName !== emptyMovie.filmName && newMovie.genres !== emptyMovie.genres){
+         return axios.post(moviesAPI, newMovie);
+      }
+      else {
+         return "Enter Movie Details."
+      }
    } catch (error) {
       return `Couldn't Add ${newMovie.filmName}, try again.`
    } 
