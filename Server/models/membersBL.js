@@ -20,6 +20,9 @@ const updateMember = async (id, memberUpdate) => {
 
 const deleteMember = async (id) => {
     await Member.findByIdAndRemove(id);
+    if(Subscription.find( { memberID : id} )){
+        await deleteSubscriptionByMemberID(id);
+    }
 };
 
 module.exports = { getMembers, getMember, addMmember, updateMember, deleteMember };

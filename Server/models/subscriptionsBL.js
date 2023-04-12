@@ -82,10 +82,14 @@ const updateSubscription = async (id, subscriptionUpdate) => {
     await Subscription.findByIdAndUpdate(id, subscriptionUpdate);
 };
 
-const deleteSubscription = async (id) => {
+const deleteSubscriptionByMovieID = async (id) => {
     await Subscription.deleteMany({ movieID : id});
+};
+const deleteSubscriptionByMemberID = async (id) => {
+    await Subscription.deleteMany({ memberID : id});
 };
 
 
 
-module.exports = { getDetailedSubs, getSubdetails, addSubscription, updateSubscription, deleteSubscription };
+
+module.exports = { getDetailedSubs, getSubdetails, addSubscription, updateSubscription, deleteSubscriptionByMovieID, deleteSubscriptionByMemberID };
