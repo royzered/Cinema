@@ -8,6 +8,7 @@ import MemberComponent from './Components/MemberComponent/MemberComponent';
 import AddMovieComponent from './Components/AddMovieComponent/AddMovieComponent';
 import { useEffect } from 'react';
 import EditMovieComponent from './Components/EditMovieComponent/EditMovieComponent';
+import AddMemberComponent from './Components/AddMemberComponent/AddMemberComponent';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
         <Route path={"/login"} element={<LoginComponent />}></Route>
         <Route path={"/"} element={<MoviesComponent  />}></Route>
         <Route path={"/members"} element={<MembersComponent  />}></Route>
+        <Route path={"/members/add"} element={<AddMemberComponent  />}></Route>
         <Route path={"/member/:id"} element={<MemberComponent  />}></Route>
         <Route path={"/movie/:id"} element={<MovieComponent  />}></Route>
         <Route path={"/movie/add"} element={<AddMovieComponent />}></Route>

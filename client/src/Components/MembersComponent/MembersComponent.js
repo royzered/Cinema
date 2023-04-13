@@ -27,6 +27,11 @@ useEffect(() => {
       <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
       Members
       </h2>
+      <span>
+      <Link to={"/members/add"} title="Add Member" style={{fontSize : "30px", position : 'absolute', width : "2%", top: "9.5%", right : "2%"}}> + </Link>
+
+      </span>
+
                 <ul>
                   {
                 members.map((member, indx )=> {
