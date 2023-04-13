@@ -13,6 +13,12 @@ const [error, setError] = useState("");
 
 
 async function addMember() {
+  let emptyMember = { name : "",
+  email : "", 
+  city : ""}
+  if(newMember === emptyMember) {
+    return "Add Member Details."
+  }
   let add = await utils.addMember(newMember);
   if(add.data) {
     navigate("/");
