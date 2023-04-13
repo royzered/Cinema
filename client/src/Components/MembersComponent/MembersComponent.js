@@ -11,6 +11,13 @@ function MembersComponent() {
 
   const [members, setMembers] = useState([]);
   const [addSubSpan, setAddSubSpan] = useState({});
+  
+  const deleteMember = async (id) => {
+    await utils.removeMember(id);
+    let newMembersList = members.filter(member => member._id !== id);
+      setMembers(newMembersList);    
+  }
+
 
 
 useEffect(() => {
@@ -44,7 +51,7 @@ useEffect(() => {
                         <b> City </b> {member.city} <br />
                         <b> Email </b> {member.email} <br />
                         <button>Edit </button> &nbsp;
-                        <button>Delete </button>
+                        <button onClick={() => deleteMember(member._id)}>Delete </button>
                         <br /> <br />
                         </section> 
                         <SubscriptionsComponent member={member} /> 
