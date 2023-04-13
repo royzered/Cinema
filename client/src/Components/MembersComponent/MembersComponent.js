@@ -19,7 +19,7 @@ useEffect(() => {
       setMembers(membersData.data); 
     }
     getMembers();
-  },[members]);
+  },[]);
 
 
   return (
@@ -29,9 +29,9 @@ useEffect(() => {
       </h2>
                 <ul>
                   {
-                members.map(member => {
+                members.map((member, indx )=> {
                     return (
-                      <li key={member._id}>
+                      <li key={indx}>
                         <span>
                         <h2> <Link to={`/member/${member._id}`}> {member.name}</Link></h2>
                         <hr />
@@ -42,13 +42,13 @@ useEffect(() => {
                         <button>Delete </button>
                         <br /> <br />
                         </section> 
-                        <SubscriptionsComponent member={member.name} /> 
+                        <SubscriptionsComponent member={member} /> 
                       <span className='plus' key={member._id} onClick={() => setAddSubSpan({...addSubSpan, [member._id] : !addSubSpan[member._id]})}>
                         +
                         </span>
                         {
                           addSubSpan[member._id] && 
-                          <AddSubscriptionsComponent  memberID={member._id} /> 
+                          <AddSubscriptionsComponent  memberID={member} /> 
 
                         }
                         </span>  <br /> <br />

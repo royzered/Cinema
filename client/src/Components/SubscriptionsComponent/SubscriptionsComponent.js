@@ -11,23 +11,13 @@ function SubscriptionsComponent(props) {
   
   const subStoreData = useSelector(state => state.subs);
   
+  const [userSubs, setUserSubs] = useState([]);
 
-  const [userSubs, setUserSubs] = useState([])
-
-
-useEffect(() => {
-
-  async function getSubs() {
-    let getSubs = await utils.getSubs();
-    dispatch({type : "GETSUBSDATA", payload : getSubs.data})
-  };
+  useEffect(() => {
+    let memberID = props.member._id;
+    setUserSubs(subStoreData.subs.filter(sub => sub.memberID === memberID ));
+  }, [subStoreData.subs, props.member]);
   
-  getSubs();
-  setUserSubs(subStoreData.subs.filter(sub => sub.name === props.member));
- 
-  },[subStoreData, props.member, navigate, dispatch]);
-
-
   return (
     <div className="App">
                   <h3>Subscriptions</h3> 

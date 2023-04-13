@@ -16,7 +16,7 @@ useEffect(() => {
   if(checkToken) {
     navigate("/");
   }
-}, [])
+}, [navigate])
 
 const login = async () => {
   try {
@@ -44,8 +44,8 @@ const login = async () => {
 
       <span className='loginInputSpan'>
         
-     Username  <input placeholder="Enter Username" type='text' onChange={(e) => setUser({...user, username : e.target.value})} /> <br/>
-     Password <input defaultValue={""} placeholder="Enter Password" type="password" onChange={(e) => setUser({...user, password : e.target.value})}  /> <br />
+     Username  <input required placeholder="Enter Username" type='text' onChange={(e) => setUser({...user, username : e.target.value})} /> <br/>
+     Password <input required defaultValue={""} placeholder="Enter Password" type="password" onChange={(e) => setUser({...user, password : e.target.value})}  /> <br />
     <button onClick={login}> Enter </button>
     <br />
     {

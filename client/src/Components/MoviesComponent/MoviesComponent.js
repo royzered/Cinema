@@ -1,12 +1,12 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MoviesComponent() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
 
   const movieStoreData = useSelector(state => state.movies);
   const subStoreData = useSelector(state => state.subs);
@@ -30,7 +30,7 @@ useEffect(() => {
   getSubs();
   
 
-  },[dispatch]);
+  },[dispatch, navigate]);
 
   const deleteMovie = async (id) => {
     let deleteMovie = await utils.removeMovie(id);

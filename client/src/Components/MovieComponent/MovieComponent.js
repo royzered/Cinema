@@ -46,6 +46,7 @@ useEffect(() => {
       <ul>
       {
         subs.map(sub => {
+          console.log(sub);
           return (
             <li>
               <Link to={`/member/${sub.memberID}`}> {sub.name} </Link> <span style={{fontSize : "12px", fontWeight : "bolder"}}>@</span> {sub.date}

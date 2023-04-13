@@ -3,25 +3,25 @@ import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
 import {  useParams } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
-import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscriptionComponent';
+import { useDispatch } from 'react-redux';
 
 function MemberComponent() {
 
 
   let id = useParams().id;
-
-  const [member, setMember] = useState([]);
-  const [addSubSpan, setAddSubSpan] = useState({});
-
-
   
+  const dispatch = useDispatch();
+  const [member, setMember] = useState([]);
+
+
 useEffect(() => {
     async function getMember() {
       let membersData = await utils.getMembers();
       setMember(membersData.data.find(member => member._id === id)); 
     }
+    
     getMember();
-  },[member, id]);
+  },[id, dispatch]);
 
 
   return (
@@ -40,14 +40,8 @@ useEffect(() => {
                         <button>Delete </button>
                         <br /> <br />
                         </section> 
-                        <SubscriptionsComponent member={member.name} /> 
-                      <span className='plus' key={member._id} onClick={() => setAddSubSpan({...addSubSpan, [member._id] : !addSubSpan[member._id]})}>
-                        +
-                        </span>
-                        {
-                          addSubSpan[member._id] && 
-                          <AddSubscriptionsComponent  memberID={member._id} /> 
-                        }
+                        <SubscriptionsComponent member={member} /> 
+                    
                         </span>  <br /> <br />
                       </li>
                     
