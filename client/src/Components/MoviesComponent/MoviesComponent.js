@@ -1,11 +1,10 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MoviesComponent() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
 
@@ -14,19 +13,8 @@ function MoviesComponent() {
 
   const [search, setSearch] = useState([]);
 
-  const token = sessionStorage["token"];
 
 useEffect(() => {
-   function checkToken(token) {
-  if(!token) {
-    navigate("/login");
-  }
-  }
-  checkToken(token);
-}, [token, navigate] );
-
-useEffect(() => {
-
   async function getMovies() {
       let moviesFromServer = await utils.getMovies();
       setSearch(moviesFromServer.data)

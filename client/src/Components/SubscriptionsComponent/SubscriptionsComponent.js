@@ -11,18 +11,8 @@ function SubscriptionsComponent(props) {
   
   const subStoreData = useSelector(state => state.subs);
   
-  const token = sessionStorage["token"];
 
   const [userSubs, setUserSubs] = useState([])
-
-useEffect(() => {
-   function checkToken(token) {
-  if(!token) {
-    navigate("/login");
-  }
-  }
-  checkToken(token);
-}, [token, navigate] );
 
 
 useEffect(() => {

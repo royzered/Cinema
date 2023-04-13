@@ -1,13 +1,10 @@
 import '../../App.css';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import utils from '../../API/utils';
 
 function AddSubscriptionsComponent(props) {
-  const navigate = useNavigate();
   
-  const token = sessionStorage["token"];
 
   const movieStoreData = useSelector(state => state.movies);
   const subStoreData = useSelector(state => state.subs);
@@ -19,14 +16,6 @@ function AddSubscriptionsComponent(props) {
                                         movieID : "", 
                                         date : today})
 
-useEffect(() => {
-   function checkToken(token) {
-  if(!token) {
-    navigate("/login");
-  }
-  }
-  checkToken(token);
-}, [token, navigate] );
 
 useEffect(() => {
   setSubsList(subStoreData.subs);

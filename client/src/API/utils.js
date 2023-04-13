@@ -19,7 +19,7 @@ const addMoive = async (newMovie) => {
                      genres : "", 
                      image : ""}
          try {
-      if(newMovie.filmName !== emptyMovie.filmName && newMovie.genres !== emptyMovie.genres){
+      if(newMovie.filmName !== emptyMovie.filmName || newMovie.genres !== emptyMovie.genres){
          return axios.post(moviesAPI, newMovie);
       }
       else {

@@ -6,6 +6,7 @@ import MovieComponent from './Components/MovieComponent/MovieComponent';
 import MembersComponent from './Components/MembersComponent/MembersComponent';
 import MemberComponent from './Components/MemberComponent/MemberComponent';
 import AddMovieComponent from './Components/AddMovieComponent/AddMovieComponent';
+import { useEffect } from 'react';
 
 function App() {
 
@@ -14,6 +15,18 @@ function App() {
   const displayUsername = sessionStorage["username"]; 
 
   let getToken = sessionStorage["token"];
+
+
+  useEffect(() => {
+  function guard() {
+    if(!getToken ) {
+      navigate("/login");
+    }
+  }
+    guard();
+  }, [getToken, navigate])
+
+  
   const logout = () => {
     if(getToken) {
       sessionStorage.removeItem("token");

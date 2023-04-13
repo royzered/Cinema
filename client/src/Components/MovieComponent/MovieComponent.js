@@ -1,6 +1,6 @@
 import '../../App.css';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function MovieComponent() {
@@ -12,20 +12,6 @@ const [movie, setMovie] = useState({});
 const [subs, setSubs] = useState([{}]);
 
 let id = useParams().id;
-
-const navigate = useNavigate();
-
-const token = sessionStorage["token"];
-
-useEffect(() => {
-   function checkToken(token) {
-  if(!token) {
-    navigate("/login");
-  }
-  }
-  checkToken(token);
-}, [token, navigate] );
-
 
 useEffect(() => {
  setMovie( moviesData.movies.find(movie => movie._id === id));

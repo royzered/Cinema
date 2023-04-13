@@ -1,27 +1,18 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import {  Link, useNavigate } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
 import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscriptionComponent';
 
 function MembersComponent() {
-  const navigate = useNavigate();
+ 
 
-  const token = sessionStorage["token"];
 
   const [members, setMembers] = useState([]);
   const [addSubSpan, setAddSubSpan] = useState({});
 
-  useEffect(() => {
-     function checkToken(token) {
-    if(!token) {
-      navigate("/login");
-    }
-    }
-    checkToken(token);
-  }, [token, navigate] );
-  
+
 useEffect(() => {
     async function getMembers() {
       let membersData = await utils.getMembers();

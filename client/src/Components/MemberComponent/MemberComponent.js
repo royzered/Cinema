@@ -1,27 +1,19 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import {  useNavigate, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
 import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscriptionComponent';
 
 function MemberComponent() {
-  const navigate = useNavigate();
 
-  const token = sessionStorage["token"];
+
   let id = useParams().id;
 
   const [member, setMember] = useState([]);
   const [addSubSpan, setAddSubSpan] = useState({});
 
-  useEffect(() => {
-     function checkToken(token) {
-    if(!token) {
-      navigate("/login");
-    }
-    }
-    checkToken(token);
-  }, [token, navigate] );
+
   
 useEffect(() => {
     async function getMember() {

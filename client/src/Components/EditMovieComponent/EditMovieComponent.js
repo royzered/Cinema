@@ -1,36 +1,33 @@
 import '../../App.css';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import utils from '../../API/utils';
 
-function AddMovieComponent() {
+function EditMovieComponent() {
 const navigate = useNavigate();
+const params = useParams();
 
-const token = sessionStorage["token"];
 
+
+const [movieDetails, setMovieDetails] = useState({});
 const [movieImage, setMovieImage] = useState("");
-const [newMovie, setNewMovie] = useState({ filmName : "",
+const [updateMovie, setUpdateMovie] = useState({ filmName : "",
                                            released : 0,
                                             genres : "", 
                                             image : ""});
 const [error, setError] = useState("");
 
-useEffect(() => {
-   function checkToken(token) {
-  if(!token) {
-    navigate("/login");
-  }
-  }
-  checkToken(token);
-}, [token, navigate] );
 
-async function addMovie() {
-  let newFilm = await utils.addMoive(newMovie);
-  if(newFilm.data) {
+let id = params.id;
+
+
+async function updateFilm(updateMovie) {
+  let update = await utils.updateMovie(updateMovie);
+  if(updateMovie.data) {
     navigate("/");
   }
   else {
-    setError(newFilm);
+    setError(update);
   }
 }
 
@@ -50,7 +47,7 @@ function handleMovieImage(event) {
   return (
     <div className="App">
        <h2 style={{background : "lime", color : 'black', fontSize: "32px"}}>
-          Add Film 
+          Edit Film 
       </h2>
 
       <br/>
@@ -61,7 +58,7 @@ function handleMovieImage(event) {
       Genres <input onChange={(e) => handleGenres(e) } type='text' placeholder='Drama' /> <br /> <br />
       Image URL<input onChange={(e) => handleMovieImage(e)} type='text' placeholder='citizen_kane_poster.jpg' /> <br /> <br />
       { 
-      movieImage.length > 0 &&
+      movieImage.includes(".jpg" || ".png" || ".webp" || ".svg") &&
       <span style={{right : 0, position : 'absolute', top : "10%"}}>
         <h5> 
         Image Preview
@@ -80,4 +77,4 @@ function handleMovieImage(event) {
   );
 }
 
-export default AddMovieComponent;
+export default EditMovieComponent;
