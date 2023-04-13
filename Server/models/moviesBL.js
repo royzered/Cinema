@@ -17,7 +17,11 @@ const addMovie = async (newMovie) => {
 };
 
 const updateMovie = async (id, detailsUpdate) => {
-    await Movie.findByIdAndUpdate(id, detailsUpdate);
+    try { await Movie.findByIdAndUpdate(id, detailsUpdate);
+       return `Movie ${updateDetails.filmName} Has Been Updated.`
+    } catch(error) {
+        return error
+    }
 };
 
 const deleteMovie = async (id) => {

@@ -15,14 +15,14 @@ const addMmember = async (newMember) => {
 }
 
 const updateMember = async (id, memberUpdate) => {
-    await Member.findByIdAndUpdate(id, memberUpdate);
+  return  await Member.findByIdAndUpdate(id, memberUpdate);
 };
 
 const deleteMember = async (id) => {
-    await Member.findByIdAndRemove(id);
     if(Subscription.find( { memberID : id} )){
-        await deleteSubscriptionByMemberID(id);
+    return    await deleteSubscriptionByMemberID(id);
     }
+    return   await Member.findByIdAndRemove(id);
 };
 
 module.exports = { getMembers, getMember, addMmember, updateMember, deleteMember };
