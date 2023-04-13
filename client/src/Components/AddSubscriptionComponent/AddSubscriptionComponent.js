@@ -2,7 +2,7 @@ import '../../App.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import utils from '../../API/utils';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AddSubscriptionsComponent(props) {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function AddSubscriptionsComponent(props) {
         let film = moviesList.find(movie => movie._id === newSub.movieID);
         dispatch({
           type: "ADDSUB",
-          payload: { ...newSub, filmName: film.filmName, date: newSub.date}
+          payload: { ...newSub, filmName: film.filmName, date: newSub.date, memberID : props.member}
         });
       }).catch(error => console.log(error));
     }
@@ -56,7 +56,7 @@ return (
       }
       </select>
      <input className='addSub' onChange={e => setNewSub({...newSub, date : new Date(e.target.value).toLocaleDateString()}) }  type='date' time style={{fontSize : "12px", border : "none"}} />
-       <button onClick={() => handleNewSub()} className='addSub'> ✓ </button>
+      <Link to={"/"}> <button onClick={() => handleNewSub()} className='addSub'> ✓ </button> </Link>
     </div>
   );
 }
