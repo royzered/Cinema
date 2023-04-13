@@ -1,4 +1,6 @@
 const Member = require('./memberSchema');
+const Subscription = require('./subscriptionSchema');
+const { deleteSubscriptionByMemberID } = require('./subscriptionsBL');
 
 const getMembers = () => {
     return Member.find( {} );
@@ -19,10 +21,10 @@ const updateMember = async (id, memberUpdate) => {
 };
 
 const deleteMember = async (id) => {
+    await Member.findByIdAndRemove(id);
     if(Subscription.find( { memberID : id} )){
     return    await deleteSubscriptionByMemberID(id);
     }
-    return   await Member.findByIdAndRemove(id);
 };
 
 module.exports = { getMembers, getMember, addMmember, updateMember, deleteMember };
