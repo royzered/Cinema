@@ -2,28 +2,33 @@ import '../../App.css';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import utils from '../../API/utils';
+import { useSelector } from 'react-redux';
 
 function EditMovieComponent() {
-const navigate = useNavigate();
-const params = useParams();
+  let id = useParams().id;
+  const navigate = useNavigate();
 
+const moviesData =  useSelector(state => state.movies);
 
-
-const [movieDetails, setMovieDetails] = useState({});
-const [movieImage, setMovieImage] = useState("");
+const [movie, setMovie] = useState({});
 const [updateMovie, setUpdateMovie] = useState({ filmName : "",
                                            released : 0,
                                             genres : "", 
                                             image : ""});
+
+
+useEffect(() => {
+  setMovie( moviesData.movies.find(movie => movie._id === id));
+  setUpdateMovie(movie);
+}, [id, moviesData.movies]);
+
+const [movieImage, setMovieImage] = useState("");
 const [error, setError] = useState("");
 
-
-let id = params.id;
-
-
-async function updateFilm(updateMovie) {
-  let update = await utils.updateMovie(updateMovie);
-  if(updateMovie.data) {
+async function updateFilm(id, updateMovie) {
+  let update = await utils.updateMovie(id, updateMovie);
+  if(update.data) {
+    console.log(update);
     navigate("/");
   }
   else {
@@ -34,15 +39,13 @@ async function updateFilm(updateMovie) {
 function handleGenres(event) {
   let movieGenres = event.target.value;
   let genres = movieGenres.split(",").map(genre => genre.trim());
-  console.log(genres);
-  setNewMovie({...newMovie, genres : genres});
+  setUpdateMovie({...updateMovie, genres : genres});
 }
 
 function handleMovieImage(event) {
   setMovieImage(event.target.value);
-  setNewMovie({...newMovie, image : event.target.value});
+  setUpdateMovie({...updateMovie, image : event.target.value});
 } 
-
 
   return (
     <div className="App">
@@ -53,21 +56,20 @@ function handleMovieImage(event) {
       <br/>
 
       <section>
-     Name <input onChange={e => setNewMovie({...newMovie, filmName : e.target.value})} type='text' placeholder='Citizen Kane ' /> <br /> <br />
-     Release Year <input onChange={(e) => setNewMovie({...newMovie, released : e.target.value})} type='number' placeholder='1941'/> <br /> <br />
-      Genres <input onChange={(e) => handleGenres(e) } type='text' placeholder='Drama' /> <br /> <br />
-      Image URL<input onChange={(e) => handleMovieImage(e)} type='text' placeholder='citizen_kane_poster.jpg' /> <br /> <br />
+     Name <input defaultValue={movie.filmName} required onChange={e => setUpdateMovie({...updateMovie, filmName : e.target.value})} type='text' placeholder='Citizen Kane ' /> <br /> <br />
+     Release Year <input defaultValue={movie.released} onChange={(e) => setUpdateMovie({...updateMovie, released : e.target.value})} type='number' placeholder='1941'/> <br /> <br />
+      Genres <input defaultValue={movie.genres} required onChange={(e) => handleGenres(e) } type='text' placeholder='Drama' /> <br /> <br />
+      Image URL<input defaultValue={movie.image} onChange={(e) => handleMovieImage(e)} type='text' placeholder='citizen_kane_poster.jpg' /> <br /> <br />
       { 
-      movieImage.includes(".jpg" || ".png" || ".webp" || ".svg") &&
       <span style={{right : 0, position : 'absolute', top : "10%"}}>
         <h5> 
         Image Preview
          </h5>
-        <img alt='Movie poster preview' width={"200px"} src={movieImage} /> 
+        <img alt='Movie poster preview' width={"200px"} src={movieImage.length > 0? movieImage : movie.image} /> 
       </span>
       }
       </section>
-      <button onClick={() => addMovie(newMovie)}>Add Film</button> &nbsp;
+      <button onClick={() => updateFilm(id, updateMovie)}>Add Film</button> &nbsp;
        <Link to={"/"} className='goBack'> <button>Cancel</button> </Link>
        <br />
       {

@@ -32,7 +32,7 @@ function AddSubscriptionsComponent(props) {
     }, [movieStoreData, subStoreData.subs, props.memberID, newSub, navigate])
 
     function handleNewSub() {
-      utils.addSub(newSub).then(res => {
+      utils.addSub(newSub).then(() => {
         let film = moviesList.find(movie => movie._id === newSub.movieID);
         dispatch({
           type: "ADDSUB",

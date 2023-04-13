@@ -7,6 +7,7 @@ import MembersComponent from './Components/MembersComponent/MembersComponent';
 import MemberComponent from './Components/MemberComponent/MemberComponent';
 import AddMovieComponent from './Components/AddMovieComponent/AddMovieComponent';
 import { useEffect } from 'react';
+import EditMovieComponent from './Components/EditMovieComponent/EditMovieComponent';
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
         <Route path={"/member/:id"} element={<MemberComponent  />}></Route>
         <Route path={"/movie/:id"} element={<MovieComponent  />}></Route>
         <Route path={"/movie/add"} element={<AddMovieComponent />}></Route>
+        <Route path={"/movie/edit/:id"} element={<EditMovieComponent />}></Route>
 
       </Routes>
 

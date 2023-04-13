@@ -14,7 +14,7 @@ const getMovies = async () => {
    return axios.get(moviesAPI, { withCredentials : true});
 }
 
-const addMoive = async (newMovie) => {
+const addMoive =  (newMovie) => {
    let emptyMovie = {filmName : "",
                      genres : "", 
                      image : ""}
@@ -30,9 +30,14 @@ const addMoive = async (newMovie) => {
    } 
 }
 
-const updateMovie = async (id, updateMovie) => {
+const updateMovie =  (id, updateMovie) => {
+   let emptyMovie = {filmName : "",
+   genres : "", 
+   image : ""}
    try {
-      return axios.put(`${moviesAPI}/${id}`, updateMovie);
+      if(updateMovie.filmName !== emptyMovie.filmName || updateMovie.genres !== emptyMovie.genres) {
+      return  axios.put(`${moviesAPI}/${id}`, updateMovie);
+      }
    } catch (error) {
       return `Couldn't Update ${updateMovie.filmName}, try again.`
    } 

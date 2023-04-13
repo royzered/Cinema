@@ -90,7 +90,7 @@ useEffect(() => {
               </ul>
             </td>
             <td>
-              <button className='editButton'> EDIT </button>
+             <Link to={`/movie/edit/${movie._id}`}> <button className='editButton'> EDIT </button> </Link> 
             </td>
             <td>
             <button className='deleteButton' onClick={() => {deleteMovie(movie._id)}}> DELETE </button>

@@ -15,14 +15,6 @@ const [newMovie, setNewMovie] = useState({ filmName : "",
                                             image : ""});
 const [error, setError] = useState("");
 
-useEffect(() => {
-   function checkToken(token) {
-  if(!token) {
-    navigate("/login");
-  }
-  }
-  checkToken(token);
-}, [token, navigate] );
 
 async function addMovie() {
   let newFilm = await utils.addMoive(newMovie);
