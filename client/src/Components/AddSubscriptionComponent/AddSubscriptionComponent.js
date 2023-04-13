@@ -38,6 +38,7 @@ function AddSubscriptionsComponent(props) {
           type: "ADDSUB",
           payload: { ...newSub, filmName: film.filmName, date: newSub.date, memberID : props.member}
         });
+        navigate("/");
       }).catch(error => console.log(error));
     }
     
