@@ -19,7 +19,7 @@ router.put('/:id', async function(req, resp) {
     const id = req.params.id;
     let updateDetails = req.body;
     let updateMovie = await movieBL.updateMovie(id, updateDetails);
-    return resp.json()
+    return resp.json(updateMovie)
 });
 
 router.post('/', async function(req, resp) {
