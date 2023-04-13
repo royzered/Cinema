@@ -1,7 +1,7 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import {  useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
 import { useDispatch } from 'react-redux';
 
@@ -11,6 +11,7 @@ function MemberComponent() {
   let id = useParams().id;
   
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [member, setMember] = useState([]);
 
 
@@ -21,7 +22,13 @@ useEffect(() => {
     }
     
     getMember();
-  },[id, dispatch]);
+  },[id, dispatch, navigate]);
+
+  const deleteMember = async (id) => {
+    await utils.removeMember(id);
+    navigate("/members")
+  };
+
 
 
   return (
@@ -37,7 +44,7 @@ useEffect(() => {
                         <b> City </b> {member.city} <br />
                         <b> Email </b> {member.email} <br />
                         <button>Edit </button> &nbsp;
-                        <button>Delete </button>
+                        <button onClick={() => deleteMember(id)}> Delete </button>
                         <br /> <br />
                         </section> 
                         <SubscriptionsComponent member={member} /> 

@@ -50,7 +50,7 @@ useEffect(() => {
                         <section>
                         <b> City </b> {member.city} <br />
                         <b> Email </b> {member.email} <br />
-                        <button>Edit </button> &nbsp;
+                      <Link to={`/member/edit/${member._id}`}> <button>Edit </button> </Link>  &nbsp;
                         <button onClick={() => deleteMember(member._id)}>Delete </button>
                         <br /> <br />
                         </section> 

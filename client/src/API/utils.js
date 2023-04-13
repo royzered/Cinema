@@ -55,6 +55,10 @@ const getMembers = async () => {
    return axios.get(membersAPI);
 }
 
+const getMember = async (id) => {
+   return axios.get(`${membersAPI}/${id}`);
+}
+
 const addMember = async (newMember) => {
    return axios.post(membersAPI, newMember);
 }
@@ -76,7 +80,7 @@ const addSub = async (newSub) => {
    return axios.post(subsAPI, newSub);
 }
 const utils = { getMovies, addMoive, updateMovie, removeMovie,
-                getMembers, addMember, updateMember, removeMember,
+                getMembers, getMember, addMember, updateMember, removeMember,
                 getSubs, addSub};
 
 export default utils;
