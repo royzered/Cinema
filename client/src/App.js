@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
   function guard() {
-    if(!getToken ) {
+    if(!getToken || !getToken.startsWith("ey") ) {
       navigate("/login");
     }
   }
