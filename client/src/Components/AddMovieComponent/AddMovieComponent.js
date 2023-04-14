@@ -27,7 +27,6 @@ async function addMovie() {
 function handleGenres(event) {
   let movieGenres = event.target.value;
   let genres = movieGenres.split(",").map(genre => genre.trim());
-  console.log(genres);
   setNewMovie({...newMovie, genres : genres});
 }
 
