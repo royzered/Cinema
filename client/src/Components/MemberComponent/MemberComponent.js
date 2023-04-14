@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import {  Link, useNavigate, useParams } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
 import { useDispatch } from 'react-redux';
+import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscriptionComponent';
 
 function MemberComponent() {
 
@@ -13,7 +14,7 @@ function MemberComponent() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [member, setMember] = useState([]);
-
+  const [addSubSpan, setAddSubSpan] = useState(false);
 
 useEffect(() => {
     async function getMember() {
@@ -48,6 +49,14 @@ useEffect(() => {
                         <br /> <br />
                         </section> 
                         <SubscriptionsComponent member={member} /> 
+                        <span className='plus' key={member._id} onClick={() => setAddSubSpan({...addSubSpan, [member._id] : !addSubSpan[member._id]})}>
+                        +
+                        </span>
+                        {
+                          addSubSpan[member._id] && 
+                          <AddSubscriptionsComponent  memberID={member} /> 
+
+                        }
                     
                         </span>  <br /> <br />
                       </li>

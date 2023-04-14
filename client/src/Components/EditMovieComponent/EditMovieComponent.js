@@ -13,7 +13,7 @@ const moviesData =  useSelector(state => state.movies);
 const [movie, setMovie] = useState({});
 const [updateMovie, setUpdateMovie] = useState({ filmName : "",
                                            released : 0,
-                                            genres : "", 
+                                            genres : [], 
                                             image : ""});
 
 
@@ -28,7 +28,6 @@ const [error, setError] = useState("");
 async function updateFilm(id, updateMovie) {
   let update = await utils.updateMovie(id, updateMovie);
   if(update.data) {
-    console.log(update);
     navigate("/");
   }
   else {
@@ -69,7 +68,7 @@ function handleMovieImage(event) {
       </span>
       }
       </section>
-      <button onClick={() => updateFilm(id, updateMovie)}>Add Film</button> &nbsp;
+      <button onClick={() => updateFilm(id, updateMovie)}>Edit Film</button> &nbsp;
        <Link to={"/"} className='goBack'> <button>Cancel</button> </Link>
        <br />
       {

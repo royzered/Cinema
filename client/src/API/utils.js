@@ -15,11 +15,8 @@ const getMovies = async () => {
 }
 
 const addMoive =  (newMovie) => {
-   let emptyMovie = {filmName : "",
-                     genres : "", 
-                     image : ""}
          try {
-      if(newMovie.filmName !== emptyMovie.filmName || newMovie.genres !== emptyMovie.genres){
+      if(newMovie.filmName && newMovie.genres){
          return axios.post(moviesAPI, newMovie);
       }
       else {
@@ -31,13 +28,11 @@ const addMoive =  (newMovie) => {
 }
 
 const updateMovie =  (id, updateMovie) => {
-   let emptyMovie = {filmName : "",
-   genres : "", 
-   image : ""}
    try {
-      if(updateMovie.filmName !== emptyMovie.filmName || updateMovie.genres !== emptyMovie.genres) {
-      return  axios.put(`${moviesAPI}/${id}`, updateMovie);
+      if(!updateMovie) {
+         return "You must enter details."
       }
+      return  axios.put(`${moviesAPI}/${id}`, updateMovie);
    } catch (error) {
       return `Couldn't Update ${updateMovie.filmName}, try again.`
    } 
