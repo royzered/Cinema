@@ -6,19 +6,11 @@ import utils from '../../API/utils';
 function AddMemberComponent() {
 const navigate = useNavigate();
 
-const [newMember, setNewMember] = useState({ name : "",
-                                            email : "", 
-                                            city : ""});
+const [newMember, setNewMember] = useState();
 const [error, setError] = useState("");
 
 
-async function addMember() {
-  let emptyMember = { name : "",
-  email : "", 
-  city : ""}
-  if(newMember === emptyMember) {
-    return "Add Member Details."
-  }
+async function addMember(newMember) {
   let add = await utils.addMember(newMember);
   if(add.data) {
     navigate("/members");

@@ -13,6 +13,11 @@ function MoviesComponent() {
 
   const [search, setSearch] = useState([]);
 
+  async function getSubs() {
+    let getSubs = await utils.getSubs();
+    dispatch({type : "GETSUBSDATA", payload : getSubs.data})
+  };
+  
 
 useEffect(() => {
   async function getMovies() {
@@ -21,11 +26,6 @@ useEffect(() => {
       dispatch({type : "GETDATA", payload : moviesFromServer.data})
   }
   
-  async function getSubs() {
-    let getSubs = await utils.getSubs();
-    dispatch({type : "GETSUBSDATA", payload : getSubs.data})
-  };
-  
   getMovies();
   getSubs();
   
@@ -33,11 +33,11 @@ useEffect(() => {
   },[dispatch, navigate]);
 
   const deleteMovie = async (id) => {
-    let deleteMovie = await utils.removeMovie(id);
+    await utils.removeMovie(id);
     dispatch({type : "DELETEMOVIE", payload : id});
     let newMovies = search.filter(movie => movie._id !== id);
-      setSearch(newMovies);    
-    return deleteMovie;
+      setSearch(newMovies); 
+      getSubs();   
   }
 
     const searchFilm = (input) => {

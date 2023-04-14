@@ -23,7 +23,7 @@ const login = async () => {
     let trylogin = await axios.post("http://127.0.0.1:8000/login", user,  {withCredentials: true, headers: { 'Content-Type': 'application/json' }});
     setloginData(trylogin.data);
     sessionStorage.setItem("token", trylogin.data.token);
-    sessionStorage.setItem("username", user.username);
+    sessionStorage.setItem("name", trylogin.data.name);
 
     if(trylogin.data.token) {
         navigate("/")

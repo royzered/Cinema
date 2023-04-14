@@ -7,8 +7,6 @@ import AddSubscriptionsComponent from '../AddSubscriptionComponent/AddSubscripti
 
 function MembersComponent() {
  
-
-
   const [members, setMembers] = useState([]);
   const [addSubSpan, setAddSubSpan] = useState({});
   
@@ -17,7 +15,6 @@ function MembersComponent() {
     let newMembersList = members.filter(member => member._id !== id);
       setMembers(newMembersList);    
   }
-
 
 
 useEffect(() => {

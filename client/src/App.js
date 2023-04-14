@@ -15,7 +15,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  const displayUsername = sessionStorage["username"]; 
+  const displayUsername = sessionStorage["name"]; 
 
   let getToken = sessionStorage["token"];
 
@@ -33,7 +33,7 @@ function App() {
   const logout = () => {
     if(getToken) {
       sessionStorage.removeItem("token");
-      sessionStorage.removeItem("username");
+      sessionStorage.removeItem("name");
       navigate("/");
     };
   };

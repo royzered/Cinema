@@ -38,7 +38,7 @@ const updateMovie =  (id, updateMovie) => {
    } 
 }
 
-const removeMovie = async (id) => {
+const removeMovie = (id) => {
    try {
       return axios.delete(`${moviesAPI}/${id}`);
    } catch (error) {
@@ -54,8 +54,13 @@ const getMember = async (id) => {
    return axios.get(`${membersAPI}/${id}`);
 }
 
-const addMember = async (newMember) => {
-   return axios.post(membersAPI, newMember);
+const addMember =  (newMember) => {
+   if(newMember){
+   return  axios.post(membersAPI, newMember);
+   }
+   else {
+      return "Fill Member Details."
+   }
 }
 
 const updateMember = async (id, updateMember) => {
@@ -67,11 +72,11 @@ const removeMember = async (id) => {
 }
 
 
-const getSubs = async () => {
+const getSubs =  () => {
    return axios.get(subsAPI, { withCredentials : true });
 }
 
-const addSub = async (newSub) => {
+const addSub =  (newSub) => {
    return axios.post(subsAPI, newSub);
 }
 const utils = { getMovies, addMoive, updateMovie, removeMovie,

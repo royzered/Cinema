@@ -7,7 +7,10 @@ function AddMovieComponent() {
 const navigate = useNavigate();
 
 const [movieImage, setMovieImage] = useState("");
-const [newMovie, setNewMovie] = useState();
+const [newMovie, setNewMovie] = useState({ filmName : "",
+                                           released : 0,
+                                            genres : "", 
+                                            image : ""});
 const [error, setError] = useState("");
 
 
