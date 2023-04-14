@@ -23,7 +23,7 @@ const login = async (user) => {
                 expiresIn : 60 * 24 * 1000
             }
         ); 
-        return {token : accessToken, status : "🪙"};
+        return {token : accessToken, status : "🪙", name : userExists.fullName};
     }
     else {
         let checkUsername = await User.findOne({ "username" : user.username });

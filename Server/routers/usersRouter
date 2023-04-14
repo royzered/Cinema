@@ -6,10 +6,7 @@ router = express.Router();
 router.post('/login', async function(req, resp) {
     let logUser = req.body;
     let loginFunc = await usersBL.login(logUser);
-    if(loginFunc.token) {
-}
-    const loginData =  {token : loginFunc, username : logUser.username};
-    console.log(loginData);
+    const loginData =  {token : loginFunc, name : loginFunc.name};
     return resp.json(loginFunc);
 });
 

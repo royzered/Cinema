@@ -25,7 +25,7 @@ const updateMovie = async (id, detailsUpdate) => {
 };
 
 const deleteMovie = async (id) => {
-    await Movie.findByIdAndDelete(id);
+    await Movie.findByIdAndRemove(id);
     if(Subscription.find( { movieID : id} )){
         await deleteSubscriptionByMovieID(id);
     }

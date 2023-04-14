@@ -27,11 +27,5 @@ router.put('/:id', async function (req, resp) {
     return resp.json(updatedSub);
 });
 
-router.delete('/:id', async function (req, resp) {
-    const id = req.params.id;
-    let deleteSub = await subsBL.deleteSubscription(id);
-    return resp.json(deleteSub);
-});
-
 
 module.exports = router;
