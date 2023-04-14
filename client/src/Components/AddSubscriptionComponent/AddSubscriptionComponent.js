@@ -14,7 +14,7 @@ function AddSubscriptionsComponent(props) {
   const [moviesList, setMoviesList] = useState([]);
   let today = new Date().toLocaleDateString();
   const [newSub, setNewSub] = useState({memberID : props.memberID._id, 
-    movieID : "", 
+    movieID : "default", 
     date : today})
     
     
@@ -46,8 +46,8 @@ function AddSubscriptionsComponent(props) {
 return (
   <div className="addSubDiv">
           <h4 className='addSub'>Add Subscription</h4>
-          <select onChange={(e) => setNewSub({...newSub, movieID : e.target.value, memberID : props.memberID})}>
-            <option value={null}>Choose Film...</option>
+          <select  onChange={(e) => setNewSub({...newSub, movieID : e.target.value, memberID : props.memberID})}>
+            <option value="default">Choose Film...</option>
       {
         moviesList.map(movie => {
           return ( 
@@ -57,7 +57,7 @@ return (
       }
       </select>
      <input className='addSub' onChange={e => setNewSub({...newSub, date : new Date(e.target.value).toLocaleDateString()}) }  type='date' time style={{fontSize : "12px", border : "none"}} />
-      <button onClick={() => handleNewSub()} className='addSub'>  ✓ </button> 
+      {newSub.movieID === "default"? <button disabled>✓</button> : <button onClick={() => handleNewSub()} className='addSub'>  ✓ </button> }
     </div>
   );
 }
