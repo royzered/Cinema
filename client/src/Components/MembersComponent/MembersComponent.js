@@ -35,7 +35,7 @@ useEffect(() => {
       Members
       </h2>
       <span>
-      <Link to={"/members/add"} title="Add Member" style={{fontSize : "30px", position : 'absolute', width : "2%", top: "9.5%", right : "2%"}}> + </Link>
+      <Link to={"/members/add"} title="Add Member" style={{fontSize : "40px", position : 'absolute', width : "2%", top: "10%", right : "2%"}}> + </Link>
 
       </span>
 

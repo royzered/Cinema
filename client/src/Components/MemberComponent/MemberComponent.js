@@ -1,7 +1,7 @@
 import '../../App.css';
 import utils  from '../../API/utils';
 import { useState, useEffect } from 'react';
-import {  useNavigate, useParams } from 'react-router-dom';
+import {  Link, useNavigate, useParams } from 'react-router-dom';
 import SubscriptionsComponent from '../SubscriptionsComponent/SubscriptionsComponent';
 import { useDispatch } from 'react-redux';
 
@@ -43,7 +43,7 @@ useEffect(() => {
                         <section>
                         <b> City </b> {member.city} <br />
                         <b> Email </b> {member.email} <br />
-                        <button>Edit </button> &nbsp;
+                        <Link to={`/member/edit/${member._id}`}> <button>Edit </button> </Link> &nbsp;
                         <button onClick={() => deleteMember(id)}> Delete </button>
                         <br /> <br />
                         </section> 

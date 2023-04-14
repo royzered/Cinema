@@ -21,7 +21,7 @@ async function addMember() {
   }
   let add = await utils.addMember(newMember);
   if(add.data) {
-    navigate("/");
+    navigate("/members");
   }
   else {
     setError(add);

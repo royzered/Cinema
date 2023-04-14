@@ -6,8 +6,6 @@ import utils from '../../API/utils';
 function AddMovieComponent() {
 const navigate = useNavigate();
 
-const token = sessionStorage["token"];
-
 const [movieImage, setMovieImage] = useState("");
 const [newMovie, setNewMovie] = useState({ filmName : "",
                                            released : 0,

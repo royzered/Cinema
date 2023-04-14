@@ -1,12 +1,9 @@
 import '../../App.css';
-import utils  from '../../API/utils';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
 
 function SubscriptionsComponent(props) {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   
   const subStoreData = useSelector(state => state.subs);
