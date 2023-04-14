@@ -62,7 +62,6 @@ const getSubdetails = (id) => {
 };
 
 const addSubscription = async (newSubscription) => {
-    console.log(newSubscription);
     let exist = Subscription.find({ memberID : newSubscription.memberID, movieID : newSubscription.movieID });
     if(!(await exist).length > 0) {
         try {
