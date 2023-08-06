@@ -1,4 +1,3 @@
-# Cinema
+# Cinema - Web App Project
 
-A cinema movie management web app, using MERN stack.
-
+A web application for managing cinema movies, built using MERN stack.
